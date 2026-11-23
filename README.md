@@ -36,15 +36,18 @@ If an optional image fails to load, the default SVG illustration returns. The se
 
 > **Privacy:** The repository is public. Any committed photographs, personal details, or image files are publicly accessible. Never commit images you intend to keep private.
 
-## Private answer delivery — needs one-time setup
+## Private answer delivery — endpoint connected, live receipt not yet tested
 
-Because GitHub Pages is static, it cannot privately receive responses by itself. **Private email delivery has been implemented but is NOT ACTIVE until you configure a Formspree form endpoint.** No answers are automatically sent.
+GitHub Pages is static, so the visitor's answer is delivered through Formspree **only when they explicitly tap Send my memory** after saving it to the exhibit.
 
-1. Create a form at https://formspree.io/ using an inbox you control, and enable the email notifications you want.
-2. Copy the public form endpoint, for example `https://formspree.io/f/abcdefgh`.
-3. In `index.html`, replace `const FORM_ENDPOINT = '';` with your exact endpoint string. **Do not put API keys, a password, or any secret in the repository.**
-4. Commit the change and allow GitHub Pages to deploy.
-5. Test one submission yourself. Confirm it arrives in the Formspree dashboard or notification email before sharing the site.
+**Configured form endpoint:** `https://formspree.io/f/mzerkrjb` (public form endpoint, not a secret API key).
+
+1. In Formspree, make sure your account's form is active and email notifications are addressed to your verified inbox.
+2. Open the live museum in a private/incognito browser. Complete the nine exhibits, choose a memory, and select **Place it in the museum**.
+3. Choose **Send my memory** and confirm the interface shows **Memory delivered**.
+4. Verify the answer appears in your Formspree submission dashboard and notification email.
+
+Never put your Formspree account password, API key, or other private secret in this public repository.
 
 Once connected, saving a memory reveals an optional **Send my memory** button. It clearly tells the visitor that pressing Send delivers the answer to the maker of the site. A successful HTTP response marks it delivered; a failed request shows a retry message and preserves the local response. An unchanged answer cannot be resent from that browser without editing it.
 
@@ -74,4 +77,4 @@ GitHub's built-in **pages build and deployment** workflow publishes changes from
 - The final keepsake is a downloadable SVG generated locally and contains no personal answer text.
 - The Formspree integration uses a browser POST only after the visitor chooses Send. Backend form ownership is needed for private delivery.
 
-**Status:** v0.5 live-site code. The Formspree endpoint and personal photo/story content are still unconfigured.
+**Status:** v0.5 site with Formspree endpoint connected. Real submission reception has not yet been tested; personal photo/story content remains unconfigured.
