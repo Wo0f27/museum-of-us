@@ -374,10 +374,10 @@ function presentAlbum(id){const list=photoAlbums[id]||[];const has=list.length>0
  el('memoryAlbum').hidden=!has;el('modalArt').hidden=has;
  if(has){albumIndex=0;drawAlbum();}else{el('albumPhoto').removeAttribute('src');}
 }
-el('albumPrev').addEventListener('click',()=>{albumIndex=Math.max(0,albumIndex-1);drawAlbum();});
-el('albumNext').addEventListener('click',()=>{const list=photoAlbums[active]||[];albumIndex=Math.min(list.length-1,albumIndex+1);drawAlbum();});
+document.getElementById('albumPrev').addEventListener('click',()=>{albumIndex=Math.max(0,albumIndex-1);drawAlbum();});
+document.getElementById('albumNext').addEventListener('click',()=>{const list=photoAlbums[active]||[];albumIndex=Math.min(list.length-1,albumIndex+1);drawAlbum();});
 let albumTouchX=null;
-el('albumPhoto').addEventListener('touchstart',e=>{albumTouchX=e.changedTouches[0].clientX;},{passive:true});
+document.getElementById('albumPhoto').addEventListener('touchstart',e=>{albumTouchX=e.changedTouches[0].clientX;},{passive:true});
 el('albumPhoto').addEventListener('touchend',e=>{if(albumTouchX===null)return;const d=e.changedTouches[0].clientX-albumTouchX;albumTouchX=null;if(Math.abs(d)<35)return;const size=(photoAlbums[active]||[]).length;albumIndex=Math.max(0,Math.min(size-1,albumIndex+(d<0?1:-1)));drawAlbum();},{passive:true});
 
 
