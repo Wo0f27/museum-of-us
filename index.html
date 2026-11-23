@@ -275,6 +275,26 @@ const privateDeliveryReady = /^https:\/\/formspree\.io\/f\/[a-zA-Z0-9]+$/.test(F
 // Optional real exhibit photos: add a public image path plus useful alt text to a story:
 // image:'memories/photo.webp', alt:'Photograph of us at ...'
 // Until you provide photos, original SVG artifact illustrations remain in place.
+
+function hydrateMemoryPhotos(){
+  Object.keys(stories).forEach(id=>{
+    const story=stories[id];
+    if(!story.image)return;
+    const button=document.querySelector('.exhibit[data-id="'+id+'"]');
+    const frame=button&&button.querySelector('.frame');
+    if(!frame)return;
+    const previousArt=frame.innerHTML;
+    const photo=document.createElement('img');
+    photo.src=story.image;
+    photo.alt=story.alt||'Personal memory photograph';
+    photo.loading='lazy';
+    photo.decoding='async';
+    photo.onerror=()=>{frame.innerHTML=previousArt;};
+    frame.replaceChildren(photo);
+  });
+}
+hydrateMemoryPhotos();
+
 const key='museum-of-us-day-one-v1',valid=['beginning','little','onlyus'],el=id=>document.getElementById(id);
 let state={visited:[],answer:'',sentAnswer:''};
 try{const existing=JSON.parse(localStorage.getItem(key)||'null');if(existing&&typeof existing==='object'){state.visited=Array.isArray(existing.visited)?existing.visited.filter(x=>valid.includes(x)):[];state.answer=typeof existing.answer==='string'?existing.answer.slice(0,1200):'';state.sentAnswer=typeof existing.sentAnswer==='string'?existing.sentAnswer.slice(0,1200):'';}}catch(e){}
