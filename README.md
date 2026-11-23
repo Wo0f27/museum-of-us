@@ -1,8 +1,8 @@
 # The Museum of Us — Anniversary Countdown, Day 01
 
-**Mobile-first interactive museum · v0.3**
+**Mobile-first interactive museum · v0.4**
 
-Self-contained GitHub Pages site built with HTML, CSS, inline SVG, and vanilla JavaScript. No framework, package install, backend, or paid hosting is required for the visual experience.
+GitHub Pages site built with HTML, CSS, inline SVG, and vanilla JavaScript. No framework, package install, backend, or paid hosting is required for the visual experience. Goma's sticker is loaded from an external image host, with an inline fallback.
 
 ## Visitor experience
 
@@ -13,7 +13,7 @@ Self-contained GitHub Pages site built with HTML, CSS, inline SVG, and vanilla J
 5. Enter a memory for the final exhibit. The text is framed in a handwritten style and stored locally on the visitor's device.
 6. Collect the stamped Day 01 ticket as an SVG download, and optionally share the answer or explicitly send it using private delivery once configured.
 
-One character cameo is intentionally included: **Goma as a waving museum attendant next to Return to entrance**. Peach and Goma appear nowhere else. The illustration is drawn as an inline SVG for this website.
+One character cameo is intentionally included: **Goma (the gray cat) waving beside Return to entrance**. The page uses a verified existing Goma sticker hosted on Tenor, with a simplified gray-cat SVG fallback if the image is unavailable. Peach does not appear anywhere else. The animated sticker requires network access to Tenor.
 
 ## Change exhibit text or add actual photographs
 
@@ -50,7 +50,7 @@ Once connected, saving a memory reveals an optional **Send my memory** button. I
 
 Without a configured endpoint, the site retains the **Share my answer** button, which uses the phone's native share sheet or clipboard. Local memory saving, ticket download, and all exhibits still work.
 
-Answers and progress are stored in `localStorage` on the visitor's own browser. Clearing browser data removes that local state. Nothing is sent to GitHub. The owner can only receive answers sent explicitly through the configured service, or ones manually shared.
+Only answers and delivery status are stored in `localStorage`. Exhibit visit progress starts fresh at 0/3 on every page load and when returning to the museum entrance. Clearing browser data removes that local state. Nothing is sent to GitHub. The owner can only receive answers sent explicitly through the configured service, or ones manually shared.
 
 ## Host on GitHub Pages
 
@@ -74,4 +74,4 @@ The `.github/workflows/pages.yml` GitHub Actions workflow publishes updates to `
 - The final keepsake is a downloadable SVG generated locally and contains no personal answer text.
 - The Formspree integration uses a browser POST only after the visitor chooses Send. Backend form ownership is needed for private delivery.
 
-**Status:** v0.3 live-site code. The Formspree endpoint and personal photo/story content are still unconfigured.
+**Status:** v0.4 live-site code. The Formspree endpoint and personal photo/story content are still unconfigured.
