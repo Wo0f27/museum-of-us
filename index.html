@@ -378,7 +378,7 @@ document.getElementById('albumPrev').addEventListener('click',()=>{albumIndex=Ma
 document.getElementById('albumNext').addEventListener('click',()=>{const list=photoAlbums[active]||[];albumIndex=Math.min(list.length-1,albumIndex+1);drawAlbum();});
 let albumTouchX=null;
 document.getElementById('albumPhoto').addEventListener('touchstart',e=>{albumTouchX=e.changedTouches[0].clientX;},{passive:true});
-el('albumPhoto').addEventListener('touchend',e=>{if(albumTouchX===null)return;const d=e.changedTouches[0].clientX-albumTouchX;albumTouchX=null;if(Math.abs(d)<35)return;const size=(photoAlbums[active]||[]).length;albumIndex=Math.max(0,Math.min(size-1,albumIndex+(d<0?1:-1)));drawAlbum();},{passive:true});
+document.getElementById('albumPhoto').addEventListener('touchend',e=>{if(albumTouchX===null)return;const d=e.changedTouches[0].clientX-albumTouchX;albumTouchX=null;if(Math.abs(d)<35)return;const size=(photoAlbums[active]||[]).length;albumIndex=Math.max(0,Math.min(size-1,albumIndex+(d<0?1:-1)));drawAlbum();},{passive:true});
 
 
 const key='museum-of-us-day-one-v1',valid=['beginning','little','onlyus','places','laughter','kindness','growth','together','tomorrow'],el=id=>document.getElementById(id);
