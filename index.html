@@ -258,6 +258,18 @@ button{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 @media(max-width:380px){.site-header .brand{font-size:.8rem}#entrance .entry{padding-left:19px;padding-right:19px}}
 @media(prefers-reduced-motion:reduce){.curtain-fabric,.curtain-invitation{transition:none!important}.room-travel-button.attention{animation:none!important}}
 
+
+/* Museum photo albums: real images, comfortable mobile controls and captions */
+.memory-album{min-width:0;background:radial-gradient(circle at 50% 22%,#e3c6bc,#baa5b9);padding:26px 16px 17px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px}
+.memory-photo-shell{width:100%;display:grid;place-items:center;min-height:0;overflow:hidden}
+.memory-photo{display:block;width:auto;max-width:100%;max-height:48svh;object-fit:contain;box-shadow:0 10px 24px #37243c7e;border:7px solid #eed6b6;border-radius:3px;background:#786d80;touch-action:pan-y}
+.album-controls{width:min(100%,290px);display:flex;align-items:center;justify-content:space-between;gap:10px;color:#553d51}
+.album-controls button{border:1px solid #a4848f;border-radius:100%;background:#f5e7d4;color:#49364e;font:28px Georgia,serif;width:50px;height:50px;line-height:1}
+.album-controls button:disabled{opacity:.35;cursor:default}
+.album-controls span{font-size:.8rem;font-weight:700;letter-spacing:.05em;font-variant-numeric:tabular-nums}
+.album-caption{text-align:center;color:#4f3d51;font:italic .84rem/1.4 Georgia,serif;margin:0;min-height:2.4em;padding:0 9px}
+@media(max-width:750px){.memory-album{padding:15px 12px 12px;gap:10px}.memory-photo{max-height:40svh;border-width:5px}.album-controls button{width:46px;height:46px}.album-caption{font-size:.79rem;min-height:0}.modal-body{padding:22px 23px 27px}}
+
 </style>
 </head>
 <body>
@@ -298,16 +310,16 @@ button{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 <div class="final-footer"><button class="ending-button" id="finalBack" type="button"><img src="https://raw.githubusercontent.com/Wo0f27/please-forgive-me-my-love/main/assets/stickers/back-hug.png" alt="" loading="lazy" onerror="this.hidden=true"><span><strong>Return to gallery</strong><small>One more look around ↶</small></span></button><button class="ending-button" id="reset" type="button"><img src="https://raw.githubusercontent.com/Wo0f27/please-forgive-me-my-love/main/assets/stickers/little-kiss.png" alt="" loading="lazy" onerror="this.hidden=true"><span><strong>Start again</strong><small>Take another little tour ↻</small></span></button></div>
 </div></section>
 </main>
-<div class="overlay" id="overlay" hidden><div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalStory"><button type="button" class="modal-close" id="close" aria-label="Close exhibit">×</button><div id="modalArt" class="modal-art" aria-hidden="true"></div><div class="modal-body"><p class="eyebrow" id="modalIndex">Exhibit I</p><h3 id="modalTitle"></h3><p class="modal-story" id="modalStory"></p><p class="modal-foot" id="modalFoot"></p><button type="button" class="btn" id="mark">Keep this moment ✓</button></div></div></div>
+<div class="overlay" id="overlay" hidden><div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalStory"><button type="button" class="modal-close" id="close" aria-label="Close exhibit">×</button><div id="modalArt" class="modal-art" aria-hidden="true"></div><div id="memoryAlbum" class="memory-album" hidden><div class="memory-photo-shell"><img id="albumPhoto" class="memory-photo" alt="" decoding="async"></div><div class="album-controls" aria-label="Photo album navigation"><button id="albumPrev" type="button" aria-label="Previous photograph">‹</button><span id="albumCounter" aria-live="polite">1 of 1</span><button id="albumNext" type="button" aria-label="Next photograph">›</button></div><p id="albumCaption" class="album-caption"></p></div><div class="modal-body"><p class="eyebrow" id="modalIndex">Exhibit I</p><h3 id="modalTitle"></h3><p class="modal-story" id="modalStory"></p><p class="modal-foot" id="modalFoot"></p><button type="button" class="btn" id="mark">Keep this moment ✓</button></div></div></div>
 <div role="status" aria-live="polite" id="toast"></div>
 <script>
 (function(){
 'use strict';
 // Replace these general draft notes with your real memories before sending the page.
 const stories={
-beginning:{num:'I',title:'Where It Began',text:'There was a time when we were still becoming part of each other’s lives. We didn’t know how many little stories were ahead of us. I’m glad that somewhere along the way, our paths became a story of their own.',foot:'The beginning of a story that still has so much left to tell.'},
-little:{num:'II',title:'The Little Things',text:'I think the quietest moments are some of the loveliest. A familiar conversation, something that made us laugh, or simply having you there. They may seem ordinary from the outside, but they’ve never felt ordinary to me.',foot:'A collection of things that never needed to be grand.'},
-onlyus:{num:'III',title:'Only We Understand',text:'We’ve made our own little world of expressions, stories, and things that probably wouldn’t make sense to anyone else. That’s part of what makes them special. Some memories really do belong to just two people.',foot:'For the moments that make sense only to us.'},
+beginning:{image:'photos/20221124_184635.webp',alt:'A photograph from our collection',num:'I',title:'Where It Began',text:'There was a time when we were still becoming part of each other’s lives. We didn’t know how many little stories were ahead of us. I’m glad that somewhere along the way, our paths became a story of their own.',foot:'The beginning of a story that still has so much left to tell.'},
+little:{image:'photos/20221212_144258.webp',alt:'A photograph from our collection',num:'II',title:'The Little Things',text:'I think the quietest moments are some of the loveliest. A familiar conversation, something that made us laugh, or simply having you there. They may seem ordinary from the outside, but they’ve never felt ordinary to me.',foot:'A collection of things that never needed to be grand.'},
+onlyus:{image:'photos/20230213_100122.webp',alt:'A photograph from our collection',num:'III',title:'Only We Understand',text:'We’ve made our own little world of expressions, stories, and things that probably wouldn’t make sense to anyone else. That’s part of what makes them special. Some memories really do belong to just two people.',foot:'For the moments that make sense only to us.'},
 places:{num:'IV',title:'Places We Carry',text:'Certain places become more than points on a map. A street, a café, or a quiet corner can remind us of time we spent together. I like knowing how places can hold a story.',foot:'Somewhere becomes special because of who was there.'},
 laughter:{num:'V',title:'The Laughs We Kept',text:'Some of the silliest moments are the ones that stay with us. I hope that years from now, we will still remember a joke and start laughing for no apparent reason.',foot:'For the moments that still make us smile.'},
 kindness:{num:'VI',title:'Unnoticed Kindness',text:'Love sometimes lives in gestures so small they almost go unnoticed. Looking back, I want to remember the ways we have made each other feel cared for.',foot:'For every quiet act of care.'},
@@ -344,6 +356,30 @@ function hydrateMemoryPhotos(){
   });
 }
 hydrateMemoryPhotos();
+// Mobile-first personal photo albums: first three exhibits, Batch 1.
+const photoAlbums={
+ beginning:[{"src":"photos/20221124_184635.webp","caption":"An early selfie, tucked close together."},{"src":"photos/20221124_195112.webp","caption":"Two shadows sharing the same sidewalk."},{"src":"photos/20221125_175712.webp","caption":"An early mirror photo."},{"src":"photos/20230312_162609.webp","caption":"Our tickets to Suzume."},{"src":"photos/20230312_182648.webp","caption":"A selfie inside the cinema."}],
+ little:[{"src":"photos/20221212_144258.webp","caption":"A moment with our hands in the frame."},{"src":"photos/20221212_144510.webp","caption":"A familiar table, another shared outing."},{"src":"photos/20221223_153850.webp","caption":"Our fingers intertwined."},{"src":"photos/20230906_174257.webp","caption":"The day we wore bear ears."},{"src":"photos/20231229_144735.webp","caption":"An embrace caught in the mirror."}],
+ onlyus:[{"src":"photos/20230213_100122.webp","caption":"Matching silly expressions."},{"src":"photos/20230609_174538.webp","caption":"A playful photograph together."},{"src":"photos/20231127_115524.webp","caption":"A mirror kiss."},{"src":"photos/20230609_182901.webp","caption":"A portrait among the lights."}],
+};
+let albumIndex=0;
+function drawAlbum(){
+ const list=photoAlbums[active]||[]; if(!list.length)return;
+ const item=list[albumIndex];el('albumPhoto').src=item.src;el('albumPhoto').alt=item.caption;
+ el('albumCounter').textContent=(albumIndex+1)+' of '+list.length;
+ el('albumCaption').textContent=item.caption;
+ el('albumPrev').disabled=albumIndex===0;el('albumNext').disabled=albumIndex===list.length-1;
+}
+function presentAlbum(id){const list=photoAlbums[id]||[];const has=list.length>0;
+ el('memoryAlbum').hidden=!has;el('modalArt').hidden=has;
+ if(has){albumIndex=0;drawAlbum();}else{el('albumPhoto').removeAttribute('src');}
+}
+el('albumPrev').addEventListener('click',()=>{albumIndex=Math.max(0,albumIndex-1);drawAlbum();});
+el('albumNext').addEventListener('click',()=>{const list=photoAlbums[active]||[];albumIndex=Math.min(list.length-1,albumIndex+1);drawAlbum();});
+let albumTouchX=null;
+el('albumPhoto').addEventListener('touchstart',e=>{albumTouchX=e.changedTouches[0].clientX;},{passive:true});
+el('albumPhoto').addEventListener('touchend',e=>{if(albumTouchX===null)return;const d=e.changedTouches[0].clientX-albumTouchX;albumTouchX=null;if(Math.abs(d)<35)return;const size=(photoAlbums[active]||[]).length;albumIndex=Math.max(0,Math.min(size-1,albumIndex+(d<0?1:-1)));drawAlbum();},{passive:true});
+
 
 const key='museum-of-us-day-one-v1',valid=['beginning','little','onlyus','places','laughter','kindness','growth','together','tomorrow'],el=id=>document.getElementById(id);
 let state={visited:[],answer:'',sentAnswer:''};
@@ -458,7 +494,7 @@ function downloadStampedTicket(){
 }
 
 function update(){document.querySelectorAll('.exhibit').forEach(n=>{if(n.dataset.id==='final')return;const v=state.visited.includes(n.dataset.id);n.classList.toggle('visited',v);n.setAttribute('aria-pressed',String(v));});const n=state.visited.length;el('count').textContent=n+' of 9 memories discovered';el('bar').style.width=(n/9*100)+'%';el('track').setAttribute('aria-valuenow',String(n));const f=document.querySelector('[data-id="final"]');f.classList.toggle('locked',n<9);f.classList.toggle('unlocked',n===9);f.setAttribute('aria-disabled',String(n<9));f.setAttribute('aria-label',n===9?'Open the final exhibit':'Final exhibit: locked until nine memories discovered');el('finalPlaque').textContent=n===9?'Your turn to choose':'Awaiting discovery';if(n<9)unlockedAnimationPlayed=false;}
-function open(id){if(id==='final'){if(state.visited.length<9){toast('Discover all nine memories to unlock the final exhibit.');return;}render();show('finale');return;}const item=stories[id];if(!item)return;active=id;previous=document.activeElement;el('modalIndex').textContent='Exhibit '+item.num+' · Private collection';el('modalTitle').textContent=item.title;el('modalStory').textContent=item.text;el('modalFoot').textContent=item.foot;el('modalArt').replaceChildren(document.querySelector('[data-id="'+id+'"] .frame').cloneNode(true));el('mark').textContent=state.visited.includes(id)?'Close exhibit ✓':'Keep this moment ✓';el('overlay').hidden=false;document.body.style.overflow='hidden';el('close').focus();}
+function open(id){if(id==='final'){if(state.visited.length<9){toast('Discover all nine memories to unlock the final exhibit.');return;}render();show('finale');return;}const item=stories[id];if(!item)return;active=id;previous=document.activeElement;el('modalIndex').textContent='Exhibit '+item.num+' · Private collection';el('modalTitle').textContent=item.title;el('modalStory').textContent=item.text;el('modalFoot').textContent=item.foot;el('modalArt').replaceChildren(document.querySelector('[data-id="'+id+'"] .frame').cloneNode(true));presentAlbum(id);el('mark').textContent=state.visited.includes(id)?'Close exhibit ✓':'Keep this moment ✓';el('overlay').hidden=false;document.body.style.overflow='hidden';el('close').focus();}
 function close(){el('overlay').hidden=true;document.body.style.overflow='';if(previous&&previous.focus)previous.focus();}
 function render(){el('answer').value=state.answer;const has=Boolean(state.answer.trim());el('memoryFrame').classList.toggle('filled',has);el('blankFrame').hidden=has;el('savedFrame').hidden=!has;el('memoryDisplay').textContent=state.answer;el('frameTitle').textContent=has?'Exhibit X — A memory through your eyes':'Exhibit X — The space we left for you';el('completion').hidden=!has;el('shareMemory').hidden=!has;el('shareFromFrame').hidden=!has;el('saveMemory').textContent=has?'Update this memory ♡':'Place it in the museum ♡';refreshTicket();refreshDelivery();}
 
