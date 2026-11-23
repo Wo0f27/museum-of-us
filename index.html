@@ -214,10 +214,54 @@ button{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
   .goma-art .goma-attendant{width:66px;height:66px}
 }
 
+
+/* v0.5 gallery experience */
+.site-header{justify-content:center;align-items:center;text-align:center;pointer-events:none}
+.site-header .brand{pointer-events:auto;font-size:.87rem;letter-spacing:.16em}
+.gallery-room-panel[hidden]{display:none!important}
+.room-reveal-stage{position:relative}
+.gallery-room-panel{position:relative}
+.curtain-trigger{position:absolute;inset:0;width:100%;height:100%;border:0;background:transparent;z-index:7;overflow:hidden;cursor:pointer;color:#ffefd9;padding:0}
+.curtain-trigger:focus-visible{outline:4px solid #ffe0a2;outline-offset:-8px}
+.curtain-fabric{position:absolute;top:0;bottom:0;width:50.5%;background:repeating-linear-gradient(90deg,#4c1021 0%,#7c2538 11%,#ae4351 23%,#86283b 32%,#541226 44%);box-shadow:inset 0 0 18px #2308178a;transition:transform 1s cubic-bezier(.21,.66,.3,1)}
+.curtain-fabric.left{left:0;border-right:3px solid #e5b47b}.curtain-fabric.right{right:0;border-left:3px solid #e5b47b}
+.curtain-fabric:after{content:"";position:absolute;top:0;left:0;right:0;height:20px;background:repeating-linear-gradient(90deg,#c29d70 0 12px,#896f63 12px 19px)}
+.curtain-invitation{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:10px;min-width:min(240px,85%);padding:22px 24px;background:#2b1825c9;border:1px solid #efcc9e9e;border-radius:7px;box-shadow:0 14px 35px #170c1c8c;transition:opacity .25s}
+.curtain-invitation strong{font:normal 1.4rem Georgia,serif}.curtain-invitation small{font-size:.68rem;letter-spacing:.1em;color:#edd4bf}.curtain-sparkle{font:2.5rem Georgia,serif;color:#f1d0a3}
+.curtain-open .curtain-fabric.left{transform:translateX(-105%)}.curtain-open .curtain-fabric.right{transform:translateX(105%)}.curtain-open .curtain-invitation{opacity:0}.curtain-open .curtain-trigger{pointer-events:none}
+.room-travel{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:20px}
+.room-travel-button{min-height:49px;padding:12px 16px;border:1px solid #ebccad;border-radius:4px;background:#f0d4b5;color:#44374d;font-weight:700;font-size:.76rem}
+.room-travel-button:hover:not(:disabled){background:#fff0d4}.room-travel-button:disabled{opacity:.35;cursor:default}
+.room-travel-label{color:#e7cbbb;font-size:.73rem;white-space:nowrap}.room-travel-button.attention{animation:nextGlow 1.4s ease}
+@keyframes nextGlow{50%{box-shadow:0 0 0 10px #eed1b766}}
+.final-footer{grid-column:1/-1;display:flex;justify-content:center;gap:13px;margin-top:0}
+.ending-button{display:flex;align-items:center;gap:12px;width:min(100%,285px);min-height:80px;padding:8px 14px;border:1px solid #e6c4aa;border-radius:7px;background:#f3d6bc;color:#4d3950;text-align:left;box-shadow:0 10px 26px #120d2266}
+.ending-button:hover{background:#ffebd2;transform:translateY(-2px)}.ending-button img{width:60px;height:60px;flex-shrink:0;object-fit:contain}.ending-button strong{font:1.1rem Georgia,serif;display:block}.ending-button small{display:block;color:#8b7181;font-size:.7rem;line-height:1.5;margin-top:4px}
+@media(max-width:750px){
+ .site-header{padding:calc(15px + env(safe-area-inset-top,0px)) 15px 13px;min-height:70px}.site-header .brand{font-size:.87rem;letter-spacing:.13em}
+ #entrance .entry{min-height:auto;padding:calc(99px + env(safe-area-inset-top,0px)) 21px 8px;display:flex;flex-direction:column}
+ #entrance .entry h1{font-size:clamp(2.9rem,10.5vw,4.1rem)}
+ #entrance .museum-illustration{height:249px;min-height:249px;position:relative;margin:15px auto 0;max-width:360px;width:100%;overflow:hidden;display:block}
+ #entrance .museum-illustration .building{position:absolute;left:50%;top:0;width:355px;max-width:none;height:345px;transform:translateX(-50%) scale(.71);transform-origin:top center;animation:none}
+ #entrance .museum-illustration .moon{width:47px;height:47px;top:0;right:12%}
+ #entrance .footer-mark{position:relative;bottom:auto;margin:0;padding:10px 18px calc(28px + env(safe-area-inset-bottom,0px));line-height:1.6}
+ #gallery .gallery-shell{padding:calc(96px + env(safe-area-inset-top,0px)) 13px 48px}
+ #gallery .gallery-top{margin-bottom:18px}#gallery .gallery-top h2{font-size:clamp(2.85rem,10vw,3.7rem)}
+ #gallery .gallery-top .sub{font-size:.92rem}
+ .room-travel{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:20px}.room-travel-label{grid-column:1/-1;grid-row:1;text-align:center;min-height:22px}.room-travel-button{grid-row:2;padding:10px;font-size:.71rem;min-height:52px}
+ .curtain-invitation{min-width:210px;padding:16px 18px}.curtain-invitation strong{font-size:1.25rem}
+ #finale .final-grid{display:flex;flex-direction:column;gap:30px;padding:calc(99px + env(safe-area-inset-top,0px)) 23px calc(55px + env(safe-area-inset-bottom,0px))}
+ #finale .final-copy{order:1}#finale .final-art{order:2}#finale .final-footer{order:3;display:grid;grid-template-columns:1fr;width:100%;gap:12px}
+ #finale .ending-button{width:100%;min-height:77px}#finale .ending-button img{width:59px;height:57px}
+ #finale .empty-frame{margin:0 auto}.gallery-bottom{padding-bottom:calc(14px + env(safe-area-inset-bottom,0px))}
+}
+@media(max-width:380px){.site-header .brand{font-size:.8rem}#entrance .entry{padding-left:19px;padding-right:19px}}
+@media(prefers-reduced-motion:reduce){.curtain-fabric,.curtain-invitation{transition:none!important}.room-travel-button.attention{animation:none!important}}
+
 </style>
 </head>
 <body>
-<header class="site-header"><a href="#" id="brand" class="brand" aria-label="Return to museum entrance">✧ THE MUSEUM OF US</a><span class="day">Anniversary countdown · 01</span></header>
+<header class="site-header"><a href="#" id="brand" class="brand" aria-label="Return to museum entrance">✧ THE MUSEUM OF US</a></header>
 <main>
 <section class="screen active" id="entrance" aria-labelledby="entranceHeading">
 <div class="entry">
@@ -233,23 +277,25 @@ button{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 </div><div class="footer-mark">Collection no. 001 &nbsp; ✦ &nbsp; Made with love</div>
 </section>
 <section class="screen" id="gallery" aria-labelledby="galleryHeading"><div class="gallery-shell">
-<div class="gallery-top"><div><p class="eyebrow">Private collection · Room one</p><h2 id="galleryHeading" tabindex="-1">The Gallery</h2><p class="sub">Tap each exhibit to read its story. The last frame is waiting for you.</p></div><div class="progress" aria-live="polite"><span id="count">0 of 3 stories discovered</span><div class="track" id="track" role="progressbar" aria-label="Exhibits discovered" aria-valuemin="0" aria-valuemax="3" aria-valuenow="0"><span id="bar"></span></div></div></div>
-<div class="room" id="museumRoom"><div class="spots" aria-hidden="true"><i></i><i></i><i></i><i></i></div><div class="exhibit-grid">
-<button class="exhibit" type="button" data-id="beginning" aria-label="Exhibit One: Where It Began"><span class="ordinal">I.</span><span class="frame">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 210" aria-hidden="true"><defs><linearGradient id="sky1" x2="0" y2="1"><stop stop-color="#8873a0"/><stop offset=".56" stop-color="#e6aaa9"/><stop offset="1" stop-color="#f8dcb4"/></linearGradient></defs><rect width="200" height="210" fill="url(#sky1)"/><circle cx="142" cy="80" r="38" fill="#ffe2b7"/><path d="M0 135Q43 111 83 136T200 123V210H0" fill="#a28ca5"/><path d="M0 154Q58 126 112 163T200 147V210H0" fill="#796c88"/><path d="M0 179Q62 149 127 183T200 166V210H0" fill="#585671"/><path d="M15 155V95Q45 68 82 95V155" fill="none" stroke="#e9c7c3" stroke-width="6" opacity=".7"/><g fill="#fff7e3"><circle cx="33" cy="26" r="2"/><circle cx="80" cy="34" r="1.5"/><circle cx="174" cy="29" r="1.7"/></g></svg></span><span class="stamp">Visited</span><span class="plaque"><strong>Where It Began</strong><small>A beginning to remember</small></span></button>
-<button class="exhibit" type="button" data-id="little" aria-label="Exhibit Two: The Little Things"><span class="ordinal">II.</span><span class="frame">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 210" aria-hidden="true"><rect width="200" height="210" fill="#d7b4ad"/><rect x="19" y="18" width="162" height="122" rx="73" fill="#ebc9bb" stroke="#f4e0cb" stroke-width="7"/><circle cx="100" cy="77" r="39" fill="#f4dec5"/><path d="M0 150H200V210H0" fill="#917988"/><path d="M0 164H200" stroke="#d2a9ab" stroke-width="6"/><rect x="34" y="117" width="57" height="42" rx="9" fill="#fbe9d4"/><path d="M90 122Q114 121 105 145Q101 152 90 148" stroke="#fbe9d4" stroke-width="9" fill="none"/><rect x="117" y="124" width="43" height="35" rx="8" fill="#d99398"/><path d="M159 129Q181 125 173 144Q169 152 159 148" stroke="#d99398" stroke-width="8" fill="none"/><path d="M51 110Q39 98 52 82M72 106Q62 94 73 81M133 112Q121 99 133 86" stroke="#fff5e6" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M91 67Q100 57 108 69Q115 81 99 91Q80 80 91 67" fill="#e8aaa8"/></svg></span><span class="stamp">Visited</span><span class="plaque"><strong>The Little Things</strong><small>Ordinary magic</small></span></button>
-<button class="exhibit" type="button" data-id="onlyus" aria-label="Exhibit Three: Only We Understand"><span class="ordinal">III.</span><span class="frame">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 210" aria-hidden="true"><rect width="200" height="210" fill="#b6a6b9"/><path d="M19 33L144 19L172 163L41 177Z" fill="#f5e5d0" stroke="#dbbeae" stroke-width="4"/><path d="M35 51L140 40M49 142L87 136M55 155L121 145" stroke="#ceb6a6" stroke-width="3"/><path d="M53 90Q89 52 124 86" stroke="#b18ca2" stroke-width="6" fill="none" stroke-linecap="round"/><circle cx="75" cy="89" r="5" fill="#735f83"/><circle cx="114" cy="83" r="5" fill="#735f83"/><path d="M76 108Q96 130 123 105" stroke="#bc8295" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M160 27L167 40L181 44L168 50L162 64L158 50L145 44L157 41Z" fill="#ffe3ac"/><circle cx="159" cy="174" r="21" fill="#db99a8" stroke="#f4d3c6" stroke-width="5"/><path d="M151 168L168 181M168 168L151 181" stroke="#fff0dd" stroke-width="4"/></svg></span><span class="stamp">Visited</span><span class="plaque"><strong>Only We Understand</strong><small>A world of our own</small></span></button>
-<button class="exhibit locked" type="button" data-id="final" aria-disabled="true" aria-label="Final Exhibit: locked until three stories discovered"><span class="ordinal">IV.</span><span class="frame">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 210" aria-hidden="true"><defs><radialGradient id="glow4"><stop stop-color="#9d85a0"/><stop offset="1" stop-color="#4a445e"/></radialGradient></defs><rect width="200" height="210" fill="url(#glow4)"/><circle cx="100" cy="104" r="61" fill="none" stroke="#eed4c259" stroke-dasharray="3 8"/><text x="100" y="140" text-anchor="middle" fill="#f2dac5" font-family="Georgia,serif" font-style="italic" font-size="115">?</text><g fill="#fbe6c2"><circle cx="26" cy="36" r="2"/><circle cx="169" cy="55" r="2"/><circle cx="42" cy="167" r="2"/><circle cx="161" cy="175" r="2"/></g></svg></span><span class="plaque"><strong>The Missing Memory</strong><small id="finalPlaque">Awaiting discovery</small></span></button>
-</div></div>
-<div class="mobile-gallery-ui" aria-label="Exhibit navigation"><button type="button" class="gallery-nav" id="exhibitPrev" aria-label="Previous exhibit">←</button><span class="gallery-page" id="galleryPage" aria-live="polite">Exhibit 1 of 4</span><button type="button" class="gallery-nav" id="exhibitNext" aria-label="Next exhibit">→</button></div><p class="swipe-instruction">Swipe to explore · Tap a frame to open</p>
-<div class="gallery-bottom"><p>“Not everything worth keeping comes with a photograph.”</p><button class="attendant-button" type="button" id="galleryBack"><span class="goma-art" aria-hidden="true"><img class="goma-attendant goma-real" src="https://media.tenor.com/Dr5sZCODJ50AAAAj/mochi-mochi-hello-grey-cat-mochi-mochi.gif" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><svg class="goma-attendant goma-backup" viewBox="0 0 112 112" xmlns="http://www.w3.org/2000/svg" hidden><path d="M79 81Q103 78 101 97Q100 105 94 103" fill="none" stroke="#6c493e" stroke-width="7" stroke-linecap="round"/><path d="M20 41Q11 27 10 13Q30 12 44 22Q60 17 77 22Q94 12 104 15Q102 33 94 45Q104 60 96 81Q84 101 55 99Q26 98 17 80Q6 61 20 41Z" fill="#c4bcb9" stroke="#5c382d" stroke-width="4" stroke-linejoin="round"/><path d="M15 20Q25 19 34 26L22 38Z" fill="#ef9f99"/><path d="M87 27Q95 22 99 22L95 38Z" fill="#ef9f99"/><ellipse cx="32" cy="66" rx="9" ry="5" fill="#ec9c9b"/><ellipse cx="82" cy="66" rx="9" ry="5" fill="#ec9c9b"/><circle cx="42" cy="56" r="4.5" fill="#563428"/><circle cx="74" cy="56" r="4.5" fill="#563428"/><path d="M52 67Q56 72 59 67Q63 72 67 67" fill="none" stroke="#563428" stroke-width="3.5" stroke-linecap="round"/><path d="M24 91Q17 83 11 75Q3 66 7 62Q12 59 19 67Q27 74 29 81" fill="#c4bcb9" stroke="#5c382d" stroke-width="4" stroke-linejoin="round"/><path d="M7 52L13 47M3 60L9 58" fill="none" stroke="#bc7a6c" stroke-width="2" stroke-linecap="round"/><path d="M30 95Q42 100 52 100M67 100Q76 98 83 94" fill="none" stroke="#5c382d" stroke-width="3" stroke-linecap="round"/></svg></span><span class="attendant-text"><strong>← Return to entrance</strong><small>Goma says: this way, please!</small></span></button></div>
-</div></section>
+<div class="gallery-top"><div><h2 id="galleryHeading" tabindex="-1">Where It Began</h2><p class="sub" id="roomIntro">The beginning, the little things, and everything only we understand.</p></div><div class="progress"><span id="count">0 of 9 memories discovered</span><div class="track" id="track" role="progressbar" aria-label="Exhibits discovered" aria-valuemin="0" aria-valuemax="9" aria-valuenow="0"><span id="bar"></span></div></div></div>
+<div class="room-reveal-stage" id="roomStage"><div class="gallery-room-panel" data-room="0" ><div class="room" id="museumRoom"><div class="spots" aria-hidden="true"><i></i><i></i><i></i><i></i></div><div class="exhibit-grid"><button class="exhibit" type="button" data-id="beginning" aria-label="Exhibit One: Where It Began"><span class="ordinal">I.</span><span class="frame">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 210" aria-hidden="true"><defs><linearGradient id="sky1" x2="0" y2="1"><stop stop-color="#8873a0"/><stop offset=".56" stop-color="#e6aaa9"/><stop offset="1" stop-color="#f8dcb4"/></linearGradient></defs><rect width="200" height="210" fill="url(#sky1)"/><circle cx="142" cy="80" r="38" fill="#ffe2b7"/><path d="M0 135Q43 111 83 136T200 123V210H0" fill="#a28ca5"/><path d="M0 154Q58 126 112 163T200 147V210H0" fill="#796c88"/><path d="M0 179Q62 149 127 183T200 166V210H0" fill="#585671"/><path d="M15 155V95Q45 68 82 95V155" fill="none" stroke="#e9c7c3" stroke-width="6" opacity=".7"/><g fill="#fff7e3"><circle cx="33" cy="26" r="2"/><circle cx="80" cy="34" r="1.5"/><circle cx="174" cy="29" r="1.7"/></g></svg></span><span class="stamp">Visited</span><span class="plaque"><strong>Where It Began</strong><small>A beginning to remember</small></span></button><button class="exhibit" type="button" data-id="little" aria-label="Exhibit Two: The Little Things"><span class="ordinal">II.</span><span class="frame">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 210" aria-hidden="true"><rect width="200" height="210" fill="#d7b4ad"/><rect x="19" y="18" width="162" height="122" rx="73" fill="#ebc9bb" stroke="#f4e0cb" stroke-width="7"/><circle cx="100" cy="77" r="39" fill="#f4dec5"/><path d="M0 150H200V210H0" fill="#917988"/><path d="M0 164H200" stroke="#d2a9ab" stroke-width="6"/><rect x="34" y="117" width="57" height="42" rx="9" fill="#fbe9d4"/><path d="M90 122Q114 121 105 145Q101 152 90 148" stroke="#fbe9d4" stroke-width="9" fill="none"/><rect x="117" y="124" width="43" height="35" rx="8" fill="#d99398"/><path d="M159 129Q181 125 173 144Q169 152 159 148" stroke="#d99398" stroke-width="8" fill="none"/><path d="M51 110Q39 98 52 82M72 106Q62 94 73 81M133 112Q121 99 133 86" stroke="#fff5e6" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M91 67Q100 57 108 69Q115 81 99 91Q80 80 91 67" fill="#e8aaa8"/></svg></span><span class="stamp">Visited</span><span class="plaque"><strong>The Little Things</strong><small>Ordinary magic</small></span></button><button class="exhibit" type="button" data-id="onlyus" aria-label="Exhibit Three: Only We Understand"><span class="ordinal">III.</span><span class="frame">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 210" aria-hidden="true"><rect width="200" height="210" fill="#b6a6b9"/><path d="M19 33L144 19L172 163L41 177Z" fill="#f5e5d0" stroke="#dbbeae" stroke-width="4"/><path d="M35 51L140 40M49 142L87 136M55 155L121 145" stroke="#ceb6a6" stroke-width="3"/><path d="M53 90Q89 52 124 86" stroke="#b18ca2" stroke-width="6" fill="none" stroke-linecap="round"/><circle cx="75" cy="89" r="5" fill="#735f83"/><circle cx="114" cy="83" r="5" fill="#735f83"/><path d="M76 108Q96 130 123 105" stroke="#bc8295" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M160 27L167 40L181 44L168 50L162 64L158 50L145 44L157 41Z" fill="#ffe3ac"/><circle cx="159" cy="174" r="21" fill="#db99a8" stroke="#f4d3c6" stroke-width="5"/><path d="M151 168L168 181M168 168L151 181" stroke="#fff0dd" stroke-width="4"/></svg></span><span class="stamp">Visited</span><span class="plaque"><strong>Only We Understand</strong><small>A world of our own</small></span></button></div><button class="curtain-trigger" type="button" data-curtain="0" aria-label="Open the red curtain for Where It Began"><span class="curtain-fabric left" aria-hidden="true"></span><span class="curtain-fabric right" aria-hidden="true"></span><span class="curtain-invitation"><span class="curtain-sparkle" aria-hidden="true">✧</span><strong>Draw back the curtain</strong><small>Tap to see what's inside</small></span></button></div></div>
+<div class="gallery-room-panel" data-room="1" hidden><div class="room" id="museumRoomMiddle"><div class="spots" aria-hidden="true"><i></i><i></i><i></i><i></i></div><div class="exhibit-grid"><button class="exhibit" type="button" data-id="places" aria-label="Exhibit IV: Places We Carry"><span class="ordinal">IV.</span><span class="frame"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 210" aria-hidden="true"><rect width="200" height="210" fill="#bea8b5"/><rect x="25" y="25" width="150" height="160" rx="68" fill="#f4e1d5" opacity=".7"/><path d="M27 168Q100 115 174 168" stroke="#8e708c" fill="none" stroke-width="8" opacity=".48"/><path d="M35 169Q100 129 166 169" stroke="#f9ead5" fill="none" stroke-width="3"/><circle cx="36" cy="34" r="2" fill="#fff3df"/><circle cx="159" cy="44" r="4" fill="#fff3df"/><text x="100" y="145" font-family="Georgia,serif" font-size="107" text-anchor="middle" fill="#826782">⌂</text></svg></span><span class="stamp">Visited</span><span class="plaque"><strong>Places We Carry</strong><small>Everywhere became somewhere</small></span></button>
+<button class="exhibit" type="button" data-id="laughter" aria-label="Exhibit V: The Laughs We Kept"><span class="ordinal">V.</span><span class="frame"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 210" aria-hidden="true"><rect width="200" height="210" fill="#bea8c6"/><rect x="25" y="25" width="150" height="160" rx="68" fill="#f4e1d5" opacity=".7"/><path d="M27 168Q100 115 174 168" stroke="#8e708c" fill="none" stroke-width="8" opacity=".48"/><path d="M35 169Q100 129 166 169" stroke="#f9ead5" fill="none" stroke-width="3"/><circle cx="36" cy="34" r="2" fill="#fff3df"/><circle cx="159" cy="44" r="4" fill="#fff3df"/><text x="100" y="145" font-family="Georgia,serif" font-size="107" text-anchor="middle" fill="#826782">✦</text></svg></span><span class="stamp">Visited</span><span class="plaque"><strong>The Laughs We Kept</strong><small>Silly moments worth keeping</small></span></button>
+<button class="exhibit" type="button" data-id="kindness" aria-label="Exhibit VI: Unnoticed Kindness"><span class="ordinal">VI.</span><span class="frame"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 210" aria-hidden="true"><rect width="200" height="210" fill="#d3aba8"/><rect x="25" y="25" width="150" height="160" rx="68" fill="#f4e1d5" opacity=".7"/><path d="M27 168Q100 115 174 168" stroke="#8e708c" fill="none" stroke-width="8" opacity=".48"/><path d="M35 169Q100 129 166 169" stroke="#f9ead5" fill="none" stroke-width="3"/><circle cx="36" cy="34" r="2" fill="#fff3df"/><circle cx="159" cy="44" r="4" fill="#fff3df"/><text x="100" y="145" font-family="Georgia,serif" font-size="107" text-anchor="middle" fill="#826782">♡</text></svg></span><span class="stamp">Visited</span><span class="plaque"><strong>Unnoticed Kindness</strong><small>Little gestures of care</small></span></button></div><button class="curtain-trigger" type="button" data-curtain="1" aria-label="Open the red curtain for Ordinary Wonders"><span class="curtain-fabric left" aria-hidden="true"></span><span class="curtain-fabric right" aria-hidden="true"></span><span class="curtain-invitation"><span class="curtain-sparkle" aria-hidden="true">✧</span><strong>Draw back the curtain</strong><small>Tap to see what's inside</small></span></button></div></div>
+<div class="gallery-room-panel" data-room="2" hidden><div class="room" id="museumRoomLast"><div class="spots" aria-hidden="true"><i></i><i></i><i></i><i></i></div><div class="exhibit-grid"><button class="exhibit" type="button" data-id="growth" aria-label="Exhibit VII: How We've Grown"><span class="ordinal">VII.</span><span class="frame"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 210" aria-hidden="true"><rect width="200" height="210" fill="#b5a4c1"/><rect x="25" y="25" width="150" height="160" rx="68" fill="#f4e1d5" opacity=".7"/><path d="M27 168Q100 115 174 168" stroke="#8e708c" fill="none" stroke-width="8" opacity=".48"/><path d="M35 169Q100 129 166 169" stroke="#f9ead5" fill="none" stroke-width="3"/><circle cx="36" cy="34" r="2" fill="#fff3df"/><circle cx="159" cy="44" r="4" fill="#fff3df"/><text x="100" y="145" font-family="Georgia,serif" font-size="107" text-anchor="middle" fill="#826782">❀</text></svg></span><span class="stamp">Visited</span><span class="plaque"><strong>How We've Grown</strong><small>The chapters that shape us</small></span></button>
+<button class="exhibit" type="button" data-id="together" aria-label="Exhibit VIII: The Days We Made"><span class="ordinal">VIII.</span><span class="frame"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 210" aria-hidden="true"><rect width="200" height="210" fill="#c2a9b7"/><rect x="25" y="25" width="150" height="160" rx="68" fill="#f4e1d5" opacity=".7"/><path d="M27 168Q100 115 174 168" stroke="#8e708c" fill="none" stroke-width="8" opacity=".48"/><path d="M35 169Q100 129 166 169" stroke="#f9ead5" fill="none" stroke-width="3"/><circle cx="36" cy="34" r="2" fill="#fff3df"/><circle cx="159" cy="44" r="4" fill="#fff3df"/><text x="100" y="145" font-family="Georgia,serif" font-size="107" text-anchor="middle" fill="#826782">☼</text></svg></span><span class="stamp">Visited</span><span class="plaque"><strong>The Days We Made</strong><small>The beauty of the everyday</small></span></button>
+<button class="exhibit" type="button" data-id="tomorrow" aria-label="Exhibit IX: The Chapters Ahead"><span class="ordinal">IX.</span><span class="frame"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 210" aria-hidden="true"><rect width="200" height="210" fill="#b6a2b5"/><rect x="25" y="25" width="150" height="160" rx="68" fill="#f4e1d5" opacity=".7"/><path d="M27 168Q100 115 174 168" stroke="#8e708c" fill="none" stroke-width="8" opacity=".48"/><path d="M35 169Q100 129 166 169" stroke="#f9ead5" fill="none" stroke-width="3"/><circle cx="36" cy="34" r="2" fill="#fff3df"/><circle cx="159" cy="44" r="4" fill="#fff3df"/><text x="100" y="145" font-family="Georgia,serif" font-size="107" text-anchor="middle" fill="#826782">✧</text></svg></span><span class="stamp">Visited</span><span class="plaque"><strong>The Chapters Ahead</strong><small>Still waiting to be written</small></span></button><button class="exhibit locked" type="button" data-id="final" aria-disabled="true" aria-label="Final Exhibit: locked until nine stories discovered"><span class="ordinal">X.</span><span class="frame">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 210" aria-hidden="true"><defs><radialGradient id="glow4"><stop stop-color="#9d85a0"/><stop offset="1" stop-color="#4a445e"/></radialGradient></defs><rect width="200" height="210" fill="url(#glow4)"/><circle cx="100" cy="104" r="61" fill="none" stroke="#eed4c259" stroke-dasharray="3 8"/><text x="100" y="140" text-anchor="middle" fill="#f2dac5" font-family="Georgia,serif" font-style="italic" font-size="115">?</text><g fill="#fbe6c2"><circle cx="26" cy="36" r="2"/><circle cx="169" cy="55" r="2"/><circle cx="42" cy="167" r="2"/><circle cx="161" cy="175" r="2"/></g></svg></span><span class="plaque"><strong>The Missing Memory</strong><small id="finalPlaque">Awaiting discovery</small></span></button></div><button class="curtain-trigger" type="button" data-curtain="2" aria-label="Open the red curtain for Still Becoming"><span class="curtain-fabric left" aria-hidden="true"></span><span class="curtain-fabric right" aria-hidden="true"></span><span class="curtain-invitation"><span class="curtain-sparkle" aria-hidden="true">✧</span><strong>Draw back the curtain</strong><small>Tap to see what's inside</small></span></button></div></div></div>
+<div class="mobile-gallery-ui" aria-label="Exhibit navigation"><button type="button" class="gallery-nav" id="exhibitPrev" aria-label="Previous exhibit">←</button><span class="gallery-page" id="galleryPage" aria-live="polite">Exhibit 1 of 3</span><button type="button" class="gallery-nav" id="exhibitNext" aria-label="Next exhibit">→</button></div><p class="swipe-instruction">Swipe to explore · Tap an exhibit to read its story</p>
+<div class="room-travel"><button class="room-travel-button" type="button" id="roomPrev">← Previous gallery</button><span class="room-travel-label" id="roomPosition">Gallery 1 of 3</span><button class="room-travel-button" type="button" id="roomNext">Next gallery →</button></div>
+<div class="gallery-bottom"><p>“Not everything worth keeping comes with a photograph.”</p><button class="attendant-button" type="button" id="galleryBack"><span class="goma-art" aria-hidden="true"><img class="goma-attendant goma-real" src="https://media.tenor.com/Dr5sZCODJ50AAAAj/mochi-mochi-hello-grey-cat-mochi-mochi.gif" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><svg class="goma-attendant goma-backup" viewBox="0 0 112 112" xmlns="http://www.w3.org/2000/svg" hidden><path d="M79 81Q103 78 101 97Q100 105 94 103" fill="none" stroke="#6c493e" stroke-width="7" stroke-linecap="round"/><path d="M20 41Q11 27 10 13Q30 12 44 22Q60 17 77 22Q94 12 104 15Q102 33 94 45Q104 60 96 81Q84 101 55 99Q26 98 17 80Q6 61 20 41Z" fill="#c4bcb9" stroke="#5c382d" stroke-width="4" stroke-linejoin="round"/><path d="M15 20Q25 19 34 26L22 38Z" fill="#ef9f99"/><path d="M87 27Q95 22 99 22L95 38Z" fill="#ef9f99"/><ellipse cx="32" cy="66" rx="9" ry="5" fill="#ec9c9b"/><ellipse cx="82" cy="66" rx="9" ry="5" fill="#ec9c9b"/><circle cx="42" cy="56" r="4.5" fill="#563428"/><circle cx="74" cy="56" r="4.5" fill="#563428"/><path d="M52 67Q56 72 59 67Q63 72 67 67" fill="none" stroke="#563428" stroke-width="3.5" stroke-linecap="round"/><path d="M24 91Q17 83 11 75Q3 66 7 62Q12 59 19 67Q27 74 29 81" fill="#c4bcb9" stroke="#5c382d" stroke-width="4" stroke-linejoin="round"/><path d="M7 52L13 47M3 60L9 58" fill="none" stroke="#bc7a6c" stroke-width="2" stroke-linecap="round"/><path d="M30 95Q42 100 52 100M67 100Q76 98 83 94" fill="none" stroke="#5c382d" stroke-width="3" stroke-linecap="round"/></svg></span><span class="attendant-text"><strong>← Return to entrance</strong><small>Goma says: this way, please!</small></span></button></div></div></section>
 <section class="screen" id="finale" aria-labelledby="finalHeading"><div class="final-grid">
-<div class="final-art"><div class="empty-frame" id="memoryFrame" aria-live="polite"><div id="blankFrame"><div class="question-mark">?</div><div class="frame-caption">Reserved for a memory<br>only you can choose</div></div><div id="savedFrame" hidden><div style="font-size:2.7rem;color:#fff1df;margin-bottom:15px">♡</div><div class="memory-display" id="memoryDisplay"></div></div></div><div class="frame-title" id="frameTitle">Exhibit IV — The space we left for you</div><button type="button" id="shareFromFrame" class="btn secondary" hidden>Share this memory ↗</button></div>
-<div class="final-copy"><p class="eyebrow">The final exhibit · From your point of view</p><h2 id="finalHeading" tabindex="-1">A memory <span class="accent">through your eyes.</span></h2><p class="final-question">If you could keep one memory of us somewhere we could always return to, which one would you choose?</p><form id="answerForm"><label class="answer-label" for="answer">Tell me the moment you'd choose</label><textarea id="answer" class="answer" rows="5" maxlength="1200" placeholder="I'd choose the time when..." required></textarea><div class="actions"><button class="btn" type="submit" id="saveMemory">Place it in the museum ♡</button><button class="btn secondary" type="button" id="shareMemory" hidden>Share my answer ↗</button></div><p class="privacy">Your answer is saved on this device. Nothing is sent automatically; you decide whether to share or privately send it.</p></form><div class="complete" id="completion" hidden><strong>It belongs here. ♡</strong><p>Thank you for adding your own memory to our little museum. I love that we can remember the same story in different ways. I hope we have many more moments to look back on.</p></div><div class="complete-ticket" id="ticketReward" hidden><button type="button" class="btn secondary" id="downloadTicket">Save my stamped ticket ↓</button><p>A small keepsake from today's visit, saved to your device.</p></div><section class="delivery-panel" id="deliveryPanel" hidden aria-labelledby="deliveryHeading"><h3 id="deliveryHeading">Send this memory privately?</h3><p>This will send the answer you chose to the person who made this museum. It will only happen if you tap Send.</p><button class="btn secondary" type="button" id="sendMemory">Send my memory ♡</button><p id="deliveryStatus" class="delivery-status" role="status" aria-live="polite"></p></section><div class="final-footer"><button class="link-button" id="finalBack" type="button">← Return to the gallery</button><button class="link-button" id="reset" type="button">Start again</button></div></div>
+<div class="final-art"><div class="empty-frame" id="memoryFrame" aria-live="polite"><div id="blankFrame"><div class="question-mark">?</div><div class="frame-caption">Reserved for a memory<br>only you can choose</div></div><div id="savedFrame" hidden><div style="font-size:2.7rem;color:#fff1df;margin-bottom:15px">♡</div><div class="memory-display" id="memoryDisplay"></div></div></div><div class="frame-title" id="frameTitle">Exhibit X — The space we left for you</div><button type="button" id="shareFromFrame" class="btn secondary" hidden>Share this memory ↗</button></div>
+<div class="final-copy"><p class="eyebrow">The final exhibit · From your point of view</p><h2 id="finalHeading" tabindex="-1">A memory <span class="accent">through your eyes.</span></h2><p class="final-question">If you could keep one memory of us somewhere we could always return to, which one would you choose?</p><form id="answerForm"><label class="answer-label" for="answer">Tell me the moment you'd choose</label><textarea id="answer" class="answer" rows="5" maxlength="1200" placeholder="I'd choose the time when..." required></textarea><div class="actions"><button class="btn" type="submit" id="saveMemory">Place it in the museum ♡</button><button class="btn secondary" type="button" id="shareMemory" hidden>Share my answer ↗</button></div><p class="privacy">Your answer is saved on this device. Nothing is sent automatically; you decide whether to share or privately send it.</p></form><div class="complete" id="completion" hidden><strong>It belongs here. ♡</strong><p>Thank you for adding your own memory to our little museum. I love that we can remember the same story in different ways. I hope we have many more moments to look back on.</p></div><div class="complete-ticket" id="ticketReward" hidden><button type="button" class="btn secondary" id="downloadTicket">Save my stamped ticket ↓</button><p>A small keepsake from today's visit, saved to your device.</p></div><section class="delivery-panel" id="deliveryPanel" hidden aria-labelledby="deliveryHeading"><h3 id="deliveryHeading">Send this memory privately?</h3><p>This will send the answer you chose to the person who made this museum. It will only happen if you tap Send.</p><button class="btn secondary" type="button" id="sendMemory">Send my memory ♡</button><p id="deliveryStatus" class="delivery-status" role="status" aria-live="polite"></p></section></div>
+<div class="final-footer"><button class="ending-button" id="finalBack" type="button"><img src="https://raw.githubusercontent.com/Wo0f27/please-forgive-me-my-love/main/assets/stickers/back-hug.png" alt="" loading="lazy" onerror="this.hidden=true"><span><strong>Return to gallery</strong><small>One more look around ↶</small></span></button><button class="ending-button" id="reset" type="button"><img src="https://raw.githubusercontent.com/Wo0f27/please-forgive-me-my-love/main/assets/stickers/little-kiss.png" alt="" loading="lazy" onerror="this.hidden=true"><span><strong>Start again</strong><small>Take another little tour ↻</small></span></button></div>
 </div></section>
 </main>
 <div class="overlay" id="overlay" hidden><div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalStory"><button type="button" class="modal-close" id="close" aria-label="Close exhibit">×</button><div id="modalArt" class="modal-art" aria-hidden="true"></div><div class="modal-body"><p class="eyebrow" id="modalIndex">Exhibit I</p><h3 id="modalTitle"></h3><p class="modal-story" id="modalStory"></p><p class="modal-foot" id="modalFoot"></p><button type="button" class="btn" id="mark">Keep this moment ✓</button></div></div></div>
@@ -261,7 +307,13 @@ button{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 const stories={
 beginning:{num:'I',title:'Where It Began',text:'There was a time when we were still becoming part of each other’s lives. We didn’t know how many little stories were ahead of us. I’m glad that somewhere along the way, our paths became a story of their own.',foot:'The beginning of a story that still has so much left to tell.'},
 little:{num:'II',title:'The Little Things',text:'I think the quietest moments are some of the loveliest. A familiar conversation, something that made us laugh, or simply having you there. They may seem ordinary from the outside, but they’ve never felt ordinary to me.',foot:'A collection of things that never needed to be grand.'},
-onlyus:{num:'III',title:'Only We Understand',text:'We’ve made our own little world of expressions, stories, and things that probably wouldn’t make sense to anyone else. That’s part of what makes them special. Some memories really do belong to just two people.',foot:'For the moments that make sense only to us.'}
+onlyus:{num:'III',title:'Only We Understand',text:'We’ve made our own little world of expressions, stories, and things that probably wouldn’t make sense to anyone else. That’s part of what makes them special. Some memories really do belong to just two people.',foot:'For the moments that make sense only to us.'},
+places:{num:'IV',title:'Places We Carry',text:'Certain places become more than points on a map. A street, a café, or a quiet corner can remind us of time we spent together. I like knowing how places can hold a story.',foot:'Somewhere becomes special because of who was there.'},
+laughter:{num:'V',title:'The Laughs We Kept',text:'Some of the silliest moments are the ones that stay with us. I hope that years from now, we will still remember a joke and start laughing for no apparent reason.',foot:'For the moments that still make us smile.'},
+kindness:{num:'VI',title:'Unnoticed Kindness',text:'Love sometimes lives in gestures so small they almost go unnoticed. Looking back, I want to remember the ways we have made each other feel cared for.',foot:'For every quiet act of care.'},
+growth:{num:'VII',title:'How We Have Grown',text:'We have both changed since the beginning. Every experience teaches us something new, including how to better understand each other. There is still so much for us to learn.',foot:'Not every important chapter is easy, but each one is part of our story.'},
+together:{num:'VIII',title:'The Days We Made',text:'I sometimes wonder which ordinary day would surprise us most if we could revisit it. Perhaps we would notice little details we never realized were special.',foot:'All the days that quietly became memories.'},
+tomorrow:{num:'IX',title:'The Chapters Ahead',text:'There are still stories we have not told and places we have not gone. I hope we keep discovering moments we will remember with tenderness one day.',foot:'A gentle space for the future we have yet to see.'}
 };
 
 // Owner configuration: set this to the URL of your Formspree form
@@ -293,7 +345,7 @@ function hydrateMemoryPhotos(){
 }
 hydrateMemoryPhotos();
 
-const key='museum-of-us-day-one-v1',valid=['beginning','little','onlyus'],el=id=>document.getElementById(id);
+const key='museum-of-us-day-one-v1',valid=['beginning','little','onlyus','places','laughter','kindness','growth','together','tomorrow'],el=id=>document.getElementById(id);
 let state={visited:[],answer:'',sentAnswer:''};
 try{const existing=JSON.parse(localStorage.getItem(key)||'null');if(existing&&typeof existing==='object'){/* A new visit always begins at 0/3; historical saved progress is intentionally ignored. */state.answer=typeof existing.answer==='string'?existing.answer.slice(0,1200):'';state.sentAnswer=typeof existing.sentAnswer==='string'?existing.sentAnswer.slice(0,1200):'';}}catch(e){}
 let active='',previous=null,timer,entering=false,unlockedAnimationPlayed=false,deliveryBusy=false;
@@ -310,7 +362,8 @@ function goEntrance(){
   // Returning to the entrance starts a fresh exhibit tour but never discards a written answer.
   state.visited=[];
   unlockedAnimationPlayed=false;
-  update();
+  panels.forEach(panel=>{panel.classList.remove('curtain-open');const curtain=panel.querySelector('.curtain-trigger');curtain.disabled=false;curtain.tabIndex=0;curtain.removeAttribute('aria-hidden');});
+  activateRoom(0);update();
   entering=false;
   el('entrance').classList.remove('ticket-transition');
   el('enterTicket').classList.remove('is-tearing');
@@ -322,11 +375,11 @@ function tearTicket(){
   if(entering)return;
   entering=true;
   el('enterTicket').disabled=true;
-  if(reducedMotion.matches){show('gallery');requestAnimationFrame(()=>navigateGallery(0,true));entering=false;el('enterTicket').disabled=false;return;}
+  if(reducedMotion.matches){activateRoom(0);show('gallery');requestAnimationFrame(()=>navigateGallery(0,true));entering=false;el('enterTicket').disabled=false;return;}
   el('entrance').classList.add('ticket-transition');
   el('enterTicket').classList.add('is-tearing');
   window.setTimeout(()=>{
-    show('gallery');
+    activateRoom(0);show('gallery');
     requestAnimationFrame(()=>navigateGallery(0,true));
     el('entrance').classList.remove('ticket-transition');
     el('enterTicket').classList.remove('is-tearing');
@@ -337,7 +390,7 @@ function tearTicket(){
 function illuminateLastExhibit(){
   if(unlockedAnimationPlayed)return;
   unlockedAnimationPlayed=true;
-  const room=el('museumRoom');
+  const room=el('museumRoomLast');
   room.classList.remove('unlocking');
   if(!reducedMotion.matches){
     void room.offsetWidth;
@@ -404,53 +457,91 @@ function downloadStampedTicket(){
   toast('Your stamped museum ticket is ready to save. ♡');
 }
 
-function update(){document.querySelectorAll('.exhibit').forEach(n=>{if(n.dataset.id==='final')return;const v=state.visited.includes(n.dataset.id);n.classList.toggle('visited',v);n.setAttribute('aria-pressed',String(v));});const n=state.visited.length;el('count').textContent=n+' of 3 stories discovered';el('bar').style.width=(n/3*100)+'%';el('track').setAttribute('aria-valuenow',String(n));const f=document.querySelector('[data-id="final"]');f.classList.toggle('locked',n<3);f.classList.toggle('unlocked',n===3);f.setAttribute('aria-disabled',String(n<3));f.setAttribute('aria-label',n===3?'Open the final exhibit':'Final exhibit: locked until three stories discovered');el('finalPlaque').textContent=n===3?'Your turn to choose':'Awaiting discovery';if(n<3)unlockedAnimationPlayed=false;}
-function open(id){if(id==='final'){if(state.visited.length<3){toast('Discover the first three exhibits to unlock this one.');return;}render();show('finale');return;}const item=stories[id];if(!item)return;active=id;previous=document.activeElement;el('modalIndex').textContent='Exhibit '+item.num+' · Private collection';el('modalTitle').textContent=item.title;el('modalStory').textContent=item.text;el('modalFoot').textContent=item.foot;el('modalArt').replaceChildren(document.querySelector('[data-id="'+id+'"] .frame').cloneNode(true));el('mark').textContent=state.visited.includes(id)?'Close exhibit ✓':'Keep this moment ✓';el('overlay').hidden=false;document.body.style.overflow='hidden';el('close').focus();}
+function update(){document.querySelectorAll('.exhibit').forEach(n=>{if(n.dataset.id==='final')return;const v=state.visited.includes(n.dataset.id);n.classList.toggle('visited',v);n.setAttribute('aria-pressed',String(v));});const n=state.visited.length;el('count').textContent=n+' of 9 memories discovered';el('bar').style.width=(n/9*100)+'%';el('track').setAttribute('aria-valuenow',String(n));const f=document.querySelector('[data-id="final"]');f.classList.toggle('locked',n<9);f.classList.toggle('unlocked',n===9);f.setAttribute('aria-disabled',String(n<9));f.setAttribute('aria-label',n===9?'Open the final exhibit':'Final exhibit: locked until nine memories discovered');el('finalPlaque').textContent=n===9?'Your turn to choose':'Awaiting discovery';if(n<9)unlockedAnimationPlayed=false;}
+function open(id){if(id==='final'){if(state.visited.length<9){toast('Discover all nine memories to unlock the final exhibit.');return;}render();show('finale');return;}const item=stories[id];if(!item)return;active=id;previous=document.activeElement;el('modalIndex').textContent='Exhibit '+item.num+' · Private collection';el('modalTitle').textContent=item.title;el('modalStory').textContent=item.text;el('modalFoot').textContent=item.foot;el('modalArt').replaceChildren(document.querySelector('[data-id="'+id+'"] .frame').cloneNode(true));el('mark').textContent=state.visited.includes(id)?'Close exhibit ✓':'Keep this moment ✓';el('overlay').hidden=false;document.body.style.overflow='hidden';el('close').focus();}
 function close(){el('overlay').hidden=true;document.body.style.overflow='';if(previous&&previous.focus)previous.focus();}
-function render(){el('answer').value=state.answer;const has=Boolean(state.answer.trim());el('memoryFrame').classList.toggle('filled',has);el('blankFrame').hidden=has;el('savedFrame').hidden=!has;el('memoryDisplay').textContent=state.answer;el('frameTitle').textContent=has?'Exhibit IV — A memory through your eyes':'Exhibit IV — The space we left for you';el('completion').hidden=!has;el('shareMemory').hidden=!has;el('shareFromFrame').hidden=!has;el('saveMemory').textContent=has?'Update this memory ♡':'Place it in the museum ♡';refreshTicket();refreshDelivery();}
+function render(){el('answer').value=state.answer;const has=Boolean(state.answer.trim());el('memoryFrame').classList.toggle('filled',has);el('blankFrame').hidden=has;el('savedFrame').hidden=!has;el('memoryDisplay').textContent=state.answer;el('frameTitle').textContent=has?'Exhibit X — A memory through your eyes':'Exhibit X — The space we left for you';el('completion').hidden=!has;el('shareMemory').hidden=!has;el('shareFromFrame').hidden=!has;el('saveMemory').textContent=has?'Update this memory ♡':'Place it in the museum ♡';refreshTicket();refreshDelivery();}
 
-const rail=document.querySelector('.exhibit-grid');
-const tiles=Array.from(rail.querySelectorAll('.exhibit'));
+
+const roomNames=[
+{name:'Where It Began',hint:'The beginning, the little things, and everything only we understand.'},
+{name:'Ordinary Wonders',hint:'Some of the loveliest memories are hidden in everyday life.'},
+{name:'Still Becoming',hint:'A few things we have learned, and moments still waiting for us.'}
+];
+const panels=Array.from(document.querySelectorAll('.gallery-room-panel'));
 const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
-let galleryPosition=0,scrollRaf=0;
-function setGalleryNav(){
-  if(!rail||!el('exhibitPrev')||!el('exhibitNext'))return;
-  const center=rail.getBoundingClientRect().left+rail.clientWidth/2;
-  let nearest=0,distance=Infinity;
-  tiles.forEach((tile,index)=>{
-    const rect=tile.getBoundingClientRect();
-    const d=Math.abs(rect.left+rect.width/2-center);
-    if(d<distance){distance=d;nearest=index;}
-  });
-  galleryPosition=nearest;
-  el('exhibitPrev').disabled=nearest===0;
-  el('exhibitNext').disabled=nearest===tiles.length-1;
-  el('galleryPage').textContent='Exhibit '+(nearest+1)+' of '+tiles.length;
+let currentRoom=0,galleryPosition=0,programmaticScroll=false,scrollSettleTimer=0,navSettleTimer=0;
+const activeRail=()=>panels[currentRoom].querySelector('.exhibit-grid');
+const activeTiles=()=>Array.from(activeRail().querySelectorAll('.exhibit'));
+function drawGalleryNav(index){
+ const count=activeTiles().length;
+ galleryPosition=Math.max(0,Math.min(count-1,index));
+ el('exhibitPrev').disabled=galleryPosition===0;el('exhibitNext').disabled=galleryPosition===count-1;
+ el('galleryPage').textContent='Exhibit '+(galleryPosition+1)+' of '+count;
 }
-function navigateGallery(index,instant){
-  if(!window.matchMedia('(max-width: 750px)').matches)return;
-  const i=Math.max(0,Math.min(tiles.length-1,index));
-  const tile=tiles[i];
-  const left=tile.offsetLeft+(tile.offsetWidth-rail.clientWidth)/2;
-  rail.scrollTo({left,behavior:instant||reducedMotion.matches?'instant':'smooth'});
-  galleryPosition=i;
-  el('exhibitPrev').disabled=i===0;
-  el('exhibitNext').disabled=i===tiles.length-1;
-  el('galleryPage').textContent='Exhibit '+(i+1)+' of '+tiles.length;
+function settledPosition(){
+ if(programmaticScroll)return;
+ const rail=activeRail(),rect=rail.getBoundingClientRect(),center=rect.left+rect.width/2;
+ let nearest=0,distance=Infinity;
+ activeTiles().forEach((tile,i)=>{const r=tile.getBoundingClientRect(),d=Math.abs(r.left+r.width/2-center);if(d<distance){distance=d;nearest=i;}});
+ drawGalleryNav(nearest);
 }
-rail.addEventListener('scroll',()=>{if(scrollRaf)return;scrollRaf=requestAnimationFrame(()=>{scrollRaf=0;setGalleryNav();});},{passive:true});
-window.addEventListener('resize',()=>setGalleryNav());
+function navigateGallery(index,instant=false){
+ const rail=activeRail(),tiles=activeTiles(),i=Math.max(0,Math.min(tiles.length-1,index));
+ drawGalleryNav(i);
+ if(!window.matchMedia('(max-width:750px)').matches)return;
+ programmaticScroll=true;clearTimeout(navSettleTimer);
+ const left=tiles[i].offsetLeft+(tiles[i].offsetWidth-rail.clientWidth)/2;
+ rail.scrollTo({left,behavior:instant||reducedMotion.matches?'instant':'smooth'});
+ navSettleTimer=window.setTimeout(()=>{programmaticScroll=false;settledPosition();},instant||reducedMotion.matches?40:520);
+}
+panels.forEach(panel=>panel.querySelector('.exhibit-grid').addEventListener('scroll',()=>{
+ if(panel!==panels[currentRoom]||programmaticScroll)return;
+ clearTimeout(scrollSettleTimer);scrollSettleTimer=window.setTimeout(settledPosition,160);
+},{passive:true}));
+function activateRoom(index,{focus=false}={}){
+ currentRoom=Math.max(0,Math.min(2,index));
+ panels.forEach((panel,i)=>{panel.hidden=i!==currentRoom;});
+ const meta=roomNames[currentRoom];
+ el('galleryHeading').textContent=meta.name;el('roomIntro').textContent=meta.hint;
+ el('roomPosition').textContent='Gallery '+(currentRoom+1)+' of 3';
+ el('roomPrev').disabled=currentRoom===0;el('roomNext').disabled=currentRoom===2;
+ clearTimeout(navSettleTimer);clearTimeout(scrollSettleTimer);programmaticScroll=false;
+ drawGalleryNav(0);
+ if(window.matchMedia('(max-width:750px)').matches)activeRail().scrollTo({left:0,behavior:'instant'});
+ if(focus){el('galleryHeading').focus({preventScroll:true});el('galleryHeading').scrollIntoView({behavior:'instant',block:'start'});}
+}
+document.querySelectorAll('.curtain-trigger').forEach(button=>button.addEventListener('click',()=>{
+ const panel=button.closest('.gallery-room-panel');
+ if(panel.classList.contains('curtain-open'))return;
+ panel.classList.add('curtain-open');
+ button.setAttribute('aria-hidden','true');button.tabIndex=-1;
+ window.setTimeout(()=>{button.disabled=true;},reducedMotion.matches?0:850);
+ toast('The curtains part. A few memories are waiting inside.');
+}));
+el('roomPrev').addEventListener('click',()=>activateRoom(currentRoom-1,{focus:true}));
+el('roomNext').addEventListener('click',()=>activateRoom(currentRoom+1,{focus:true}));
+window.addEventListener('resize',()=>{if(window.matchMedia('(max-width:750px)').matches)navigateGallery(galleryPosition,true);});
 el('exhibitPrev').addEventListener('click',()=>navigateGallery(galleryPosition-1));
 el('exhibitNext').addEventListener('click',()=>navigateGallery(galleryPosition+1));
 
 el('enterTicket').addEventListener('click',tearTicket);el('brand').addEventListener('click',e=>{e.preventDefault();if(!el('overlay').hidden)close();goEntrance();});el('galleryBack').addEventListener('click',goEntrance);el('finalBack').addEventListener('click',()=>show('gallery'));document.querySelectorAll('.exhibit').forEach(n=>n.addEventListener('click',()=>open(n.dataset.id)));el('close').addEventListener('click',close);el('overlay').addEventListener('click',e=>{if(e.target===el('overlay'))close();});
 document.addEventListener('keydown',e=>{if(el('overlay').hidden)return;if(e.key==='Escape'){close();return;}if(e.key!=='Tab')return;const first=el('close'),last=el('mark');if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}});
-el('mark').addEventListener('click',()=>{if(!state.visited.includes(active)){state.visited.push(active);persist();update();close();if(window.matchMedia('(max-width: 750px)').matches){const next=valid.findIndex(id=>!state.visited.includes(id));requestAnimationFrame(()=>navigateGallery(next<0?3:next));}if(state.visited.length===3){illuminateLastExhibit();}toast(state.visited.length===3?'The last exhibit is now glowing. It is waiting for your memory.':'Another little memory has been added.');}else close();});
+el('mark').addEventListener('click',()=>{
+ if(state.visited.includes(active)){close();return;}
+ state.visited.push(active);persist();update();close();
+ const ids=Array.from(panels[currentRoom].querySelectorAll('.exhibit')).map(n=>n.dataset.id).filter(id=>id!=='final');
+ const next=ids.findIndex(id=>!state.visited.includes(id));
+ if(next>=0){requestAnimationFrame(()=>navigateGallery(next));toast('Another memory has been added.');}
+ else if(currentRoom<2){toast('This gallery is complete. The next curtain is ready.');el('roomNext').classList.add('attention');window.setTimeout(()=>el('roomNext').classList.remove('attention'),1400);}
+ else if(state.visited.length===9){illuminateLastExhibit();requestAnimationFrame(()=>navigateGallery(activeTiles().length-1));toast('The last frame is glowing. A memory of your own awaits.');}
+ else toast('Another memory has been added.');
+});
 el('answerForm').addEventListener('submit',e=>{e.preventDefault();const value=el('answer').value.trim();if(!value){el('answer').focus();return;}state.answer=value.slice(0,1200);persist();render();toast('Your memory has found a place in the museum. ♡');if(window.matchMedia('(max-width: 750px)').matches){el('answer').blur();requestAnimationFrame(()=>el('memoryFrame').scrollIntoView({behavior:reducedMotion.matches?'instant':'smooth',block:'center'}));}});
 el('shareFromFrame').addEventListener('click',()=>el('shareMemory').click());el('sendMemory').addEventListener('click',sendPrivately);el('downloadTicket').addEventListener('click',downloadStampedTicket);
 el('shareMemory').addEventListener('click',async()=>{if(!state.answer)return;const content='The Museum of Us · Day One\n\n'+QUESTION+'\n\n'+state.answer+'\n\n♡';if(navigator.share){try{await navigator.share({title:'A memory through my eyes',text:content});return;}catch(e){if(e&&e.name==='AbortError')return;}}try{if(navigator.clipboard&&navigator.clipboard.writeText){await navigator.clipboard.writeText(content);toast('Copied! Paste your answer into a message.');return;}}catch(e){}el('answer').focus();el('answer').select();try{if(document.execCommand('copy')){toast('Copied! Paste your answer into a message.');return;}}catch(e){}toast('Select your answer above to copy it.');});
 el('reset').addEventListener('click',()=>{if(!confirm('Start over? This clears the saved museum memory on this device.'))return;state={visited:[],answer:'',sentAnswer:''};persist();update();render();goEntrance();toast('A new ticket is waiting at the entrance.');});
-update();render();setGalleryNav();
+update();render();activateRoom(0);
 })();
 </script>
 </body>
