@@ -203,6 +203,17 @@ button{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 @media(prefers-reduced-motion:reduce){
   .ticket.is-tearing .ticket-main,.ticket.is-tearing .stub,#entrance.ticket-transition .museum-illustration,#entrance.ticket-transition .entry>:first-child>:not(.ticket),#entrance.ticket-transition:after,.room.unlocking,.room.unlocking .exhibit[data-id="final"],.goma-wave{animation:none!important}
 }
+
+/* v0.4: true Goma character reference rather than the previous white-bear sketch */
+.goma-art{position:relative;display:flex;align-items:center;justify-content:center;flex:0 0 76px;width:76px;height:74px;overflow:hidden}
+.goma-art .goma-attendant{width:76px;height:74px;flex:none;display:block;object-fit:contain}
+.goma-art .goma-attendant[hidden]{display:none!important}
+.goma-art .goma-backup{height:72px;max-width:100%}
+@media(max-width:750px){
+  .goma-art{flex-basis:66px;width:66px;height:66px}
+  .goma-art .goma-attendant{width:66px;height:66px}
+}
+
 </style>
 </head>
 <body>
@@ -234,20 +245,7 @@ button{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 210" aria-hidden="true"><defs><radialGradient id="glow4"><stop stop-color="#9d85a0"/><stop offset="1" stop-color="#4a445e"/></radialGradient></defs><rect width="200" height="210" fill="url(#glow4)"/><circle cx="100" cy="104" r="61" fill="none" stroke="#eed4c259" stroke-dasharray="3 8"/><text x="100" y="140" text-anchor="middle" fill="#f2dac5" font-family="Georgia,serif" font-style="italic" font-size="115">?</text><g fill="#fbe6c2"><circle cx="26" cy="36" r="2"/><circle cx="169" cy="55" r="2"/><circle cx="42" cy="167" r="2"/><circle cx="161" cy="175" r="2"/></g></svg></span><span class="plaque"><strong>The Missing Memory</strong><small id="finalPlaque">Awaiting discovery</small></span></button>
 </div></div>
 <div class="mobile-gallery-ui" aria-label="Exhibit navigation"><button type="button" class="gallery-nav" id="exhibitPrev" aria-label="Previous exhibit">←</button><span class="gallery-page" id="galleryPage" aria-live="polite">Exhibit 1 of 4</span><button type="button" class="gallery-nav" id="exhibitNext" aria-label="Next exhibit">→</button></div><p class="swipe-instruction">Swipe to explore · Tap a frame to open</p>
-<div class="gallery-bottom"><p>“Not everything worth keeping comes with a photograph.”</p><button class="attendant-button" type="button" id="galleryBack"><svg class="goma-attendant" viewBox="0 0 110 100" role="img" aria-label="Goma the bear, a little museum attendant waving you toward the entrance" xmlns="http://www.w3.org/2000/svg">
-<ellipse cx="52" cy="92" rx="40" ry="5" fill="#b1969e" opacity=".35"/>
-<g class="goma-wave"><path d="M76 52C83 43 85 27 96 30C103 33 99 46 94 56C92 63 87 68 80 65Z" fill="#fff8ee" stroke="#9c8791" stroke-width="2.2"/><path d="M91 34L93 28M96 38L101 33" stroke="#9c8791" stroke-width="2" stroke-linecap="round"/></g>
-<ellipse cx="53" cy="73" rx="31" ry="25" fill="#fffaf2" stroke="#a88d9b" stroke-width="2.4"/>
-<path d="M35 59Q53 52 70 59L66 91H40Z" fill="#ab8a99"/>
-<path d="M53 60L53 92" stroke="#e8d6c9" stroke-width="3"/><circle cx="53" cy="71" r="1.7" fill="#f4deba"/><circle cx="53" cy="83" r="1.7" fill="#f4deba"/>
-<path d="M21 60Q12 68 23 76L32 74L33 63Z" fill="#fffaf2" stroke="#a88d9b" stroke-width="2.2"/>
-<circle cx="30" cy="29" r="13" fill="#fff9f2" stroke="#a88d9b" stroke-width="2.1"/><circle cx="77" cy="29" r="13" fill="#fff9f2" stroke="#a88d9b" stroke-width="2.1"/>
-<ellipse cx="54" cy="42" rx="36" ry="30" fill="#fffaf3" stroke="#a88d9b" stroke-width="2.4"/>
-<ellipse cx="54" cy="52" rx="13" ry="10" fill="#f9e7e2"/>
-<circle cx="42" cy="42" r="2.8" fill="#473e48"/><circle cx="65" cy="42" r="2.8" fill="#473e48"/><path d="M51 51Q54 55 57 51" stroke="#493d49" stroke-width="2" fill="none" stroke-linecap="round"/>
-<ellipse cx="32" cy="51" rx="6" ry="3.8" fill="#eeb7ba" opacity=".72"/><ellipse cx="74" cy="51" rx="6" ry="3.8" fill="#eeb7ba" opacity=".72"/>
-<path d="M30 22Q54 6 79 22" stroke="#f0ca9e" stroke-width="7" stroke-linecap="round"/><path d="M37 18L38 7Q54 -1 70 8L72 18Z" fill="#816a81" stroke="#584f64" stroke-width="2"/><path d="M40 17H69" stroke="#e8c6a6" stroke-width="3"/>
-</svg><span class="attendant-text"><strong>← Return to entrance</strong><small>Goma, your little museum attendant</small></span></button></div>
+<div class="gallery-bottom"><p>“Not everything worth keeping comes with a photograph.”</p><button class="attendant-button" type="button" id="galleryBack"><span class="goma-art" aria-hidden="true"><img class="goma-attendant goma-real" src="https://media.tenor.com/Dr5sZCODJ50AAAAj/mochi-mochi-hello-grey-cat-mochi-mochi.gif" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><svg class="goma-attendant goma-backup" viewBox="0 0 112 112" xmlns="http://www.w3.org/2000/svg" hidden><path d="M79 81Q103 78 101 97Q100 105 94 103" fill="none" stroke="#6c493e" stroke-width="7" stroke-linecap="round"/><path d="M20 41Q11 27 10 13Q30 12 44 22Q60 17 77 22Q94 12 104 15Q102 33 94 45Q104 60 96 81Q84 101 55 99Q26 98 17 80Q6 61 20 41Z" fill="#c4bcb9" stroke="#5c382d" stroke-width="4" stroke-linejoin="round"/><path d="M15 20Q25 19 34 26L22 38Z" fill="#ef9f99"/><path d="M87 27Q95 22 99 22L95 38Z" fill="#ef9f99"/><ellipse cx="32" cy="66" rx="9" ry="5" fill="#ec9c9b"/><ellipse cx="82" cy="66" rx="9" ry="5" fill="#ec9c9b"/><circle cx="42" cy="56" r="4.5" fill="#563428"/><circle cx="74" cy="56" r="4.5" fill="#563428"/><path d="M52 67Q56 72 59 67Q63 72 67 67" fill="none" stroke="#563428" stroke-width="3.5" stroke-linecap="round"/><path d="M24 91Q17 83 11 75Q3 66 7 62Q12 59 19 67Q27 74 29 81" fill="#c4bcb9" stroke="#5c382d" stroke-width="4" stroke-linejoin="round"/><path d="M7 52L13 47M3 60L9 58" fill="none" stroke="#bc7a6c" stroke-width="2" stroke-linecap="round"/><path d="M30 95Q42 100 52 100M67 100Q76 98 83 94" fill="none" stroke="#5c382d" stroke-width="3" stroke-linecap="round"/></svg></span><span class="attendant-text"><strong>← Return to entrance</strong><small>Goma says: this way, please!</small></span></button></div>
 </div></section>
 <section class="screen" id="finale" aria-labelledby="finalHeading"><div class="final-grid">
 <div class="final-art"><div class="empty-frame" id="memoryFrame" aria-live="polite"><div id="blankFrame"><div class="question-mark">?</div><div class="frame-caption">Reserved for a memory<br>only you can choose</div></div><div id="savedFrame" hidden><div style="font-size:2.7rem;color:#fff1df;margin-bottom:15px">♡</div><div class="memory-display" id="memoryDisplay"></div></div></div><div class="frame-title" id="frameTitle">Exhibit IV — The space we left for you</div><button type="button" id="shareFromFrame" class="btn secondary" hidden>Share this memory ↗</button></div>
@@ -297,9 +295,9 @@ hydrateMemoryPhotos();
 
 const key='museum-of-us-day-one-v1',valid=['beginning','little','onlyus'],el=id=>document.getElementById(id);
 let state={visited:[],answer:'',sentAnswer:''};
-try{const existing=JSON.parse(localStorage.getItem(key)||'null');if(existing&&typeof existing==='object'){state.visited=Array.isArray(existing.visited)?existing.visited.filter(x=>valid.includes(x)):[];state.answer=typeof existing.answer==='string'?existing.answer.slice(0,1200):'';state.sentAnswer=typeof existing.sentAnswer==='string'?existing.sentAnswer.slice(0,1200):'';}}catch(e){}
+try{const existing=JSON.parse(localStorage.getItem(key)||'null');if(existing&&typeof existing==='object'){/* A new visit always begins at 0/3; historical saved progress is intentionally ignored. */state.answer=typeof existing.answer==='string'?existing.answer.slice(0,1200):'';state.sentAnswer=typeof existing.sentAnswer==='string'?existing.sentAnswer.slice(0,1200):'';}}catch(e){}
 let active='',previous=null,timer,entering=false,unlockedAnimationPlayed=false,deliveryBusy=false;
-function persist(){try{localStorage.setItem(key,JSON.stringify(state));}catch(e){}}
+function persist(){try{localStorage.setItem(key,JSON.stringify({answer:state.answer,sentAnswer:state.sentAnswer}));}catch(e){}}
 function show(id){document.querySelectorAll('.screen').forEach(n=>n.classList.toggle('active',n.id===id));window.scrollTo(0,0);const heading=el(id).querySelector('h1,h2');if(heading)heading.focus({preventScroll:true});}
 function toast(message){clearTimeout(timer);el('toast').textContent=message;el('toast').classList.add('show');timer=setTimeout(()=>el('toast').classList.remove('show'),3200);}
 
@@ -309,6 +307,10 @@ function refreshTicket(){
   el('ticketReward').hidden=!collected;
 }
 function goEntrance(){
+  // Returning to the entrance starts a fresh exhibit tour but never discards a written answer.
+  state.visited=[];
+  unlockedAnimationPlayed=false;
+  update();
   entering=false;
   el('entrance').classList.remove('ticket-transition');
   el('enterTicket').classList.remove('is-tearing');
@@ -320,11 +322,12 @@ function tearTicket(){
   if(entering)return;
   entering=true;
   el('enterTicket').disabled=true;
-  if(reducedMotion.matches){show('gallery');return;}
+  if(reducedMotion.matches){show('gallery');requestAnimationFrame(()=>navigateGallery(0,true));entering=false;el('enterTicket').disabled=false;return;}
   el('entrance').classList.add('ticket-transition');
   el('enterTicket').classList.add('is-tearing');
   window.setTimeout(()=>{
     show('gallery');
+    requestAnimationFrame(()=>navigateGallery(0,true));
     el('entrance').classList.remove('ticket-transition');
     el('enterTicket').classList.remove('is-tearing');
     el('enterTicket').disabled=false;
