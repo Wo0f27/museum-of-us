@@ -267,8 +267,7 @@ button{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .album-controls button{border:1px solid #a4848f;border-radius:100%;background:#f5e7d4;color:#49364e;font:28px Georgia,serif;width:50px;height:50px;line-height:1}
 .album-controls button:disabled{opacity:.35;cursor:default}
 .album-controls span{font-size:.8rem;font-weight:700;letter-spacing:.05em;font-variant-numeric:tabular-nums}
-.album-caption{text-align:center;color:#4f3d51;font:italic .84rem/1.4 Georgia,serif;margin:0;min-height:2.4em;padding:0 9px}
-@media(max-width:750px){.memory-album{padding:15px 12px 12px;gap:10px}.memory-photo{max-height:40svh;border-width:5px}.album-controls button{width:46px;height:46px}.album-caption{font-size:.79rem;min-height:0}.modal-body{padding:22px 23px 27px}}
+@media(max-width:750px){.memory-album{padding:15px 12px 12px;gap:10px}.memory-photo{max-height:40svh;border-width:5px}.album-controls button{width:46px;height:46px}.modal-body{padding:22px 23px 27px}}
 
 </style>
 </head>
@@ -310,7 +309,7 @@ button{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 <div class="final-footer"><button class="ending-button" id="finalBack" type="button"><img src="https://raw.githubusercontent.com/Wo0f27/please-forgive-me-my-love/main/assets/stickers/back-hug.png" alt="" loading="lazy" onerror="this.hidden=true"><span><strong>Return to gallery</strong><small>One more look around ↶</small></span></button><button class="ending-button" id="reset" type="button"><img src="https://raw.githubusercontent.com/Wo0f27/please-forgive-me-my-love/main/assets/stickers/little-kiss.png" alt="" loading="lazy" onerror="this.hidden=true"><span><strong>Start again</strong><small>Take another little tour ↻</small></span></button></div>
 </div></section>
 </main>
-<div class="overlay" id="overlay" hidden><div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalStory"><button type="button" class="modal-close" id="close" aria-label="Close exhibit">×</button><div id="modalArt" class="modal-art" aria-hidden="true"></div><div id="memoryAlbum" class="memory-album" hidden><div class="memory-photo-shell"><img id="albumPhoto" class="memory-photo" alt="" decoding="async"></div><div class="album-controls" aria-label="Photo album navigation"><button id="albumPrev" type="button" aria-label="Previous photograph">‹</button><span id="albumCounter" aria-live="polite">1 of 1</span><button id="albumNext" type="button" aria-label="Next photograph">›</button></div><p id="albumCaption" class="album-caption"></p></div><div class="modal-body"><p class="eyebrow" id="modalIndex">Exhibit I</p><h3 id="modalTitle"></h3><p class="modal-story" id="modalStory"></p><p class="modal-foot" id="modalFoot"></p><button type="button" class="btn" id="mark">Keep this moment ✓</button></div></div></div>
+<div class="overlay" id="overlay" hidden><div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalStory"><button type="button" class="modal-close" id="close" aria-label="Close exhibit">×</button><div id="modalArt" class="modal-art" aria-hidden="true"></div><div id="memoryAlbum" class="memory-album" hidden><div class="memory-photo-shell"><img id="albumPhoto" class="memory-photo" alt="" decoding="async"></div><div class="album-controls" aria-label="Photo album navigation"><button id="albumPrev" type="button" aria-label="Previous photograph">‹</button><span id="albumCounter" aria-live="polite">1 of 1</span><button id="albumNext" type="button" aria-label="Next photograph">›</button></div></div><div class="modal-body"><p class="eyebrow" id="modalIndex">Exhibit I</p><h3 id="modalTitle"></h3><p class="modal-story" id="modalStory"></p><p class="modal-foot" id="modalFoot"></p><button type="button" class="btn" id="mark">Keep this moment ✓</button></div></div></div>
 <div role="status" aria-live="polite" id="toast"></div>
 <script>
 (function(){
@@ -367,7 +366,6 @@ function drawAlbum(){
  const list=photoAlbums[active]||[]; if(!list.length)return;
  const item=list[albumIndex];el('albumPhoto').src=item.src;el('albumPhoto').alt=item.caption;
  el('albumCounter').textContent=(albumIndex+1)+' of '+list.length;
- el('albumCaption').textContent=item.caption;
  el('albumPrev').disabled=albumIndex===0;el('albumNext').disabled=albumIndex===list.length-1;
 }
 function presentAlbum(id){const list=photoAlbums[id]||[];const has=list.length>0;
