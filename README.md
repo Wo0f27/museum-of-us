@@ -58,7 +58,7 @@ Repository: https://github.com/Wo0f27/museum-of-us
 
 Live address: https://wo0f27.github.io/museum-of-us/
 
-The `.github/workflows/pages.yml` GitHub Actions workflow publishes updates to `main`. If necessary, open Repository Settings → Pages → Build and deployment → Source: GitHub Actions.
+GitHub's built-in **pages build and deployment** workflow publishes changes from `main` (the repository is already configured for branch-based publishing). The custom `.github/workflows/pages.yml` is manual-only to avoid duplicate deployments. If necessary, check **Repository Settings → Pages** to confirm the publishing source is `main`.
 
 ## Future personalization
 
