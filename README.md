@@ -1,23 +1,23 @@
 # The Museum of Us — Anniversary Countdown, Day 01
 
-**Mobile-first interactive museum · v0.4**
+**Mobile-first interactive museum · v0.5**
 
 GitHub Pages site built with HTML, CSS, inline SVG, and vanilla JavaScript. No framework, package install, backend, or paid hosting is required for the visual experience. Goma's sticker is loaded from an external image host, with an inline fallback.
 
 ## Visitor experience
 
 1. At the museum entrance, **tap the admission ticket itself**. It tears into two pieces and transitions into the gallery. The ticket also works with a keyboard. Reduced-motion settings skip the animation.
-2. Swipe the exhibits on a phone (or use previous/next controls). Desktop retains a wider gallery.
-3. Open the three exhibits and collect their memories.
-4. The last display illuminates when all three are discovered.
+2. Choose among three galleries: Where It Began, Ordinary Wonders, and Still Becoming. Each gallery starts behind a red velvet curtain; tap to pull it aside.
+3. Swipe through the exhibits on a phone (or use previous/next controls), and tap a frame to read it. Each gallery has its own stable exhibit counter.
+4. Collect all nine memories across the galleries. The tenth and final frame illuminates when all nine are discovered.
 5. Enter a memory for the final exhibit. The text is framed in a handwritten style and stored locally on the visitor's device.
 6. Collect the stamped Day 01 ticket as an SVG download, and optionally share the answer or explicitly send it using private delivery once configured.
 
-One character cameo is intentionally included: **Goma (the gray cat) waving beside Return to entrance**. The page uses a verified existing Goma sticker hosted on Tenor, with a simplified gray-cat SVG fallback if the image is unavailable. Peach does not appear anywhere else. The animated sticker requires network access to Tenor.
+Goma (the gray cat) remains the museum attendant on **Return to entrance**, with a gray-cat SVG fallback if its hosted image fails. The two illustrated buttons at the end use **Peach and Goma stickers** already present in the owner's earlier `please-forgive-me-my-love` repository. The gallery and ticket entrance have no extra character decorations. These character images load over the network.
 
 ## Change exhibit text or add actual photographs
 
-Open `index.html` and find `const stories` near the bottom. Change the `text` and `foot` values for each exhibit. The included text is intentionally general until real memories are provided.
+Open `index.html` and find `const stories` near the bottom. Update the `text` and `foot` fields for each of the nine exhibits. The new Room II and Room III stories are placeholders, not claims about real relationship events.
 
 To show a real image, put it in a `memories/` folder and add `image` and `alt` fields to the corresponding story object. Example:
 
@@ -50,7 +50,7 @@ Once connected, saving a memory reveals an optional **Send my memory** button. I
 
 Without a configured endpoint, the site retains the **Share my answer** button, which uses the phone's native share sheet or clipboard. Local memory saving, ticket download, and all exhibits still work.
 
-Only answers and delivery status are stored in `localStorage`. Exhibit visit progress starts fresh at 0/3 on every page load and when returning to the museum entrance. Clearing browser data removes that local state. Nothing is sent to GitHub. The owner can only receive answers sent explicitly through the configured service, or ones manually shared.
+Only answers and delivery status are stored in `localStorage`. Exhibit progress starts fresh at 0/9 on each page load and when returning to the museum entrance; curtain states also reset. Clearing browser data removes that local state. Nothing is sent to GitHub. The owner can only receive answers sent explicitly through the configured service, or ones manually shared.
 
 ## Host on GitHub Pages
 
@@ -64,14 +64,14 @@ GitHub's built-in **pages build and deployment** workflow publishes changes from
 
 - Replace generic exhibit copy with exact memories and personal objects.
 - If desired, add your own exhibit images (with the privacy warning above in mind).
-- Keep Goma limited to the entrance-return attendant, unless you explicitly choose otherwise later.
+- Keep Goma on the Return to entrance attendant button, and the final Peach/Goma stickers on the two ending navigation buttons, unless you explicitly choose otherwise.
 - The final question can be changed in the `.final-question` text and the `QUESTION` constant so shared answers show the matching prompt.
 
 ## Technical notes
 
-- Touch-friendly controls, phone-safe-area padding, swiping, keyboard navigation, Escape to close story dialog, and reduced-motion support.
+- Touch-friendly controls, phone-safe-area padding, stable swipe counters, three curtained galleries, keyboard navigation, Escape to close story dialog, and reduced-motion support.
 - No remote JavaScript, no external fonts, and no extra images required by the initial site.
 - The final keepsake is a downloadable SVG generated locally and contains no personal answer text.
 - The Formspree integration uses a browser POST only after the visitor chooses Send. Backend form ownership is needed for private delivery.
 
-**Status:** v0.4 live-site code. The Formspree endpoint and personal photo/story content are still unconfigured.
+**Status:** v0.5 live-site code. The Formspree endpoint and personal photo/story content are still unconfigured.
