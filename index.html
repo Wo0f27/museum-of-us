@@ -138,6 +138,71 @@ button{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
   .modal-foot{margin-bottom:10px}
 }
 
+
+/* v0.3: tear-away ticket, Goma attendant, collectible gallery */
+.ticket{border:0;appearance:none;-webkit-appearance:none;text-align:left;cursor:pointer;position:relative;isolation:isolate;transform-origin:50% 50%;transition:filter .3s,transform .3s}
+.ticket:focus-visible{outline:3px solid #f8daa2;outline-offset:7px}
+.ticket:hover:not(:disabled){transform:rotate(-1deg) translateY(-4px);filter:drop-shadow(0 18px 24px #090b1980)}
+.ticket-main,.stub{position:relative;will-change:transform,opacity}
+.ticket-main:after{content:"";position:absolute;right:4px;top:0;bottom:0;border-right:1px dashed #997b78;opacity:.45}
+.ticket-callout{margin:22px 0 0;color:#f8d9b3;font:italic 1rem/1.6 Georgia,serif;display:flex;align-items:center;gap:10px}
+.ticket-callout:before{content:"↳";font:1.7rem Georgia,serif;transform:rotate(-17deg)}
+.ticket:disabled{cursor:default}
+.ticket.is-tearing .ticket-main{animation:ticket-rip-main .85s cubic-bezier(.4,.01,.65,1) forwards}
+.ticket.is-tearing .stub{animation:ticket-rip-stub .85s cubic-bezier(.4,.01,.65,1) forwards}
+#entrance.ticket-transition .entry>:first-child>:not(.ticket){animation:ticket-copy-out .75s ease forwards}
+#entrance.ticket-transition .museum-illustration{animation:ticket-museum-in .9s ease-in forwards}
+#entrance.ticket-transition:after{content:"";position:fixed;inset:0;z-index:5;pointer-events:none;background:radial-gradient(circle,#ffe5c0,#b991a6 50%,#29253a 100%);animation:ticket-wipe 1s .16s ease both}
+@keyframes ticket-rip-main{0%{transform:none;opacity:1}28%{transform:translate(-8px,-2px) rotate(-4deg)}56%{transform:translate(-38px,8px) rotate(-12deg)}100%{transform:translate(-95px,100px) rotate(-30deg);opacity:0}}
+@keyframes ticket-rip-stub{0%{transform:none;opacity:1}27%{transform:translate(6px,0) rotate(7deg)}60%{transform:translate(45px,18px) rotate(25deg)}100%{transform:translate(105px,130px) rotate(44deg);opacity:0}}
+@keyframes ticket-copy-out{70%{opacity:1}100%{opacity:0}}
+@keyframes ticket-museum-in{0%{filter:brightness(1)}65%{filter:brightness(1.5) blur(0)}100%{filter:brightness(2) blur(7px);transform:scale(1.07)}}
+@keyframes ticket-wipe{0%,40%{opacity:0}100%{opacity:1}}
+.ticket-stamp{display:block;position:absolute;right:13px;top:17px;transform:rotate(14deg);border:2px solid #936f70;border-radius:2px;padding:5px 6px;color:#956c72;font:700 .53rem/1.2 Arial,sans-serif;text-transform:uppercase;letter-spacing:.12em;opacity:.9}
+.ticket-stamp[hidden]{display:none}
+.attendant-button{display:flex;align-items:center;gap:12px;min-height:72px;border:1px solid #eccbad80;border-radius:6px;background:linear-gradient(105deg,#f4d7b7,#ecc4b0);color:#4b3d52;text-align:left;padding:5px 22px 5px 8px;box-shadow:0 11px 28px #120e2944;transition:transform .2s,background .2s}
+.attendant-button:hover,.attendant-button:focus-visible{background:#ffe5c7;transform:translateY(-2px)}
+.attendant-button .attendant-text{display:flex;flex-direction:column;gap:5px;min-width:0}
+.attendant-button strong{font:normal 1.03rem Georgia,serif}
+.attendant-button small{font-size:.66rem;letter-spacing:.07em;color:#856d78}
+.goma-attendant{width:72px;height:70px;flex:0 0 72px;overflow:visible}
+.goma-wave{transform-origin:81px 51px;animation:goma-beckon 2.8s ease-in-out infinite}
+@keyframes goma-beckon{0%,13%,61%,100%{transform:rotate(-8deg)}27%,43%{transform:rotate(15deg)}}
+.exhibit[data-id="little"] .frame,.exhibit[data-id="onlyus"] .frame{border-color:#d5b68b;box-shadow:inset 0 0 0 3px #fff0d1,0 13px 23px #44304b80,0 0 0 3px #d1b4a0}
+.exhibit[data-id="little"] .frame:after,.exhibit[data-id="onlyus"] .frame:after{content:"";pointer-events:none;position:absolute;inset:8px;border:1px solid #ffffff9a;background:linear-gradient(110deg,#ffffff3d 0 19%,transparent 27% 71%,#ffffff16 81%);mix-blend-mode:screen}
+.frame img{display:block;width:100%;height:100%;object-fit:cover}
+.room.unlocking{animation:room-slow-glow 1.2s ease both}
+.room.unlocking .exhibit[data-id="final"]{animation:last-exhibit-reveal 1.3s ease both}
+.room.unlocking .exhibit[data-id="final"] .frame{box-shadow:0 0 12px #fff5df,0 0 45px #ffe4aa,0 0 80px #ffd7b377}
+@keyframes room-slow-glow{0%{filter:brightness(1)}43%{filter:brightness(.64)}75%{filter:brightness(1.1)}100%{filter:brightness(1)}}
+@keyframes last-exhibit-reveal{0%{filter:brightness(.55);transform:scale(.94)}75%{filter:brightness(1.35);transform:scale(1.035)}100%{filter:none;transform:scale(1)}}
+.memory-display{font-family:"Segoe Print","Bradley Hand","Comic Sans MS",cursive;font-style:normal;white-space:pre-wrap}
+.complete-ticket{margin-top:18px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.complete-ticket .btn{min-height:48px}
+.complete-ticket p{margin:0;color:#dec2b9;font-size:.79rem;line-height:1.5}
+.delivery-panel{margin-top:19px;padding:20px;border:1px solid #ead0bf7a;border-radius:5px;background:#eed7c610}
+.delivery-panel h3{font-size:1.35rem;margin:0 0 9px}
+.delivery-panel p{font-size:.82rem;line-height:1.6;color:#e4d0d0}
+.delivery-panel .btn{margin-top:3px}
+.delivery-status{margin:10px 0 0}
+.delivery-status[data-state="success"]{color:#d0ebd5}
+.delivery-status[data-state="error"]{color:#ffdfc7}
+@media(max-width:750px){
+  .ticket{width:100%;max-width:355px;margin-top:19px}
+  .ticket-callout{font-size:.92rem;margin-top:18px}
+  .ticket-stamp{right:6px;top:4px;font-size:.46rem}
+  .attendant-button{width:100%;max-width:340px;justify-content:flex-start;min-height:74px}
+  .goma-attendant{width:66px;height:64px;flex-basis:66px}
+  .gallery-bottom{align-items:stretch}
+  .gallery-bottom p{margin-bottom:4px}
+  .complete-ticket{display:block}
+  .complete-ticket .btn,.delivery-panel .btn{width:100%}
+  .complete-ticket p{margin-top:10px}
+  .delivery-panel{padding:19px 15px}
+}
+@media(prefers-reduced-motion:reduce){
+  .ticket.is-tearing .ticket-main,.ticket.is-tearing .stub,#entrance.ticket-transition .museum-illustration,#entrance.ticket-transition .entry>:first-child>:not(.ticket),#entrance.ticket-transition:after,.room.unlocking,.room.unlocking .exhibit[data-id="final"],.goma-wave{animation:none!important}
+}
 </style>
 </head>
 <body>
@@ -149,15 +214,16 @@ button{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 <p class="eyebrow">An invitation, just for you</p>
 <h1 id="entranceHeading" tabindex="-1">A little museum for the things <span class="accent">we remember.</span></h1>
 <p class="lead">Some memories are too small for history books and too precious to forget. I made a little place for ours.</p>
-<button class="btn" id="enter" type="button">Enter the museum &nbsp; ↗</button><span class="entry-note">Take your time. There's no rush.</span>
-<div class="ticket" aria-label="A museum admission ticket for day one"><div class="ticket-main"><small>Private collection · admit one</small><strong>The Museum of Us</strong><em>Valid for as many visits as you like.</em></div><div class="stub"><small>Day</small><b>01</b><small>Forever</small></div></div>
+<p class="ticket-callout" id="ticketInstruction">Your invitation is ready. Tap the ticket to enter.</p>
+<button class="ticket" id="enterTicket" type="button" aria-label="Tear your admission ticket and enter the museum" aria-describedby="ticketInstruction"><span class="ticket-main"><small>Private collection · admit one</small><strong>The Museum of Us</strong><em>Valid for as many visits as you like.</em><span class="ticket-stamp" id="ticketStamp" hidden>Visited<br>Day 01</span></span><span class="stub"><small>Day</small><b>01</b><small>Forever</small></span></button>
+<span class="entry-note">Take your time. There's no rush.</span>
 </div>
 <div class="museum-illustration" aria-hidden="true"><div class="glow"></div><div class="moon"></div><div class="building"><div class="roof"></div><div class="facade"><div class="nameplate">MUSEUM OF US</div><div class="win one"></div><div class="win two"></div><div class="door"></div></div><div class="steps"></div><div class="lamp left"></div><div class="lamp right"></div></div></div>
 </div><div class="footer-mark">Collection no. 001 &nbsp; ✦ &nbsp; Made with love</div>
 </section>
 <section class="screen" id="gallery" aria-labelledby="galleryHeading"><div class="gallery-shell">
 <div class="gallery-top"><div><p class="eyebrow">Private collection · Room one</p><h2 id="galleryHeading" tabindex="-1">The Gallery</h2><p class="sub">Tap each exhibit to read its story. The last frame is waiting for you.</p></div><div class="progress" aria-live="polite"><span id="count">0 of 3 stories discovered</span><div class="track" id="track" role="progressbar" aria-label="Exhibits discovered" aria-valuemin="0" aria-valuemax="3" aria-valuenow="0"><span id="bar"></span></div></div></div>
-<div class="room"><div class="spots" aria-hidden="true"><i></i><i></i><i></i><i></i></div><div class="exhibit-grid">
+<div class="room" id="museumRoom"><div class="spots" aria-hidden="true"><i></i><i></i><i></i><i></i></div><div class="exhibit-grid">
 <button class="exhibit" type="button" data-id="beginning" aria-label="Exhibit One: Where It Began"><span class="ordinal">I.</span><span class="frame">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 210" aria-hidden="true"><defs><linearGradient id="sky1" x2="0" y2="1"><stop stop-color="#8873a0"/><stop offset=".56" stop-color="#e6aaa9"/><stop offset="1" stop-color="#f8dcb4"/></linearGradient></defs><rect width="200" height="210" fill="url(#sky1)"/><circle cx="142" cy="80" r="38" fill="#ffe2b7"/><path d="M0 135Q43 111 83 136T200 123V210H0" fill="#a28ca5"/><path d="M0 154Q58 126 112 163T200 147V210H0" fill="#796c88"/><path d="M0 179Q62 149 127 183T200 166V210H0" fill="#585671"/><path d="M15 155V95Q45 68 82 95V155" fill="none" stroke="#e9c7c3" stroke-width="6" opacity=".7"/><g fill="#fff7e3"><circle cx="33" cy="26" r="2"/><circle cx="80" cy="34" r="1.5"/><circle cx="174" cy="29" r="1.7"/></g></svg></span><span class="stamp">Visited</span><span class="plaque"><strong>Where It Began</strong><small>A beginning to remember</small></span></button>
 <button class="exhibit" type="button" data-id="little" aria-label="Exhibit Two: The Little Things"><span class="ordinal">II.</span><span class="frame">
@@ -168,11 +234,24 @@ button{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 210" aria-hidden="true"><defs><radialGradient id="glow4"><stop stop-color="#9d85a0"/><stop offset="1" stop-color="#4a445e"/></radialGradient></defs><rect width="200" height="210" fill="url(#glow4)"/><circle cx="100" cy="104" r="61" fill="none" stroke="#eed4c259" stroke-dasharray="3 8"/><text x="100" y="140" text-anchor="middle" fill="#f2dac5" font-family="Georgia,serif" font-style="italic" font-size="115">?</text><g fill="#fbe6c2"><circle cx="26" cy="36" r="2"/><circle cx="169" cy="55" r="2"/><circle cx="42" cy="167" r="2"/><circle cx="161" cy="175" r="2"/></g></svg></span><span class="plaque"><strong>The Missing Memory</strong><small id="finalPlaque">Awaiting discovery</small></span></button>
 </div></div>
 <div class="mobile-gallery-ui" aria-label="Exhibit navigation"><button type="button" class="gallery-nav" id="exhibitPrev" aria-label="Previous exhibit">←</button><span class="gallery-page" id="galleryPage" aria-live="polite">Exhibit 1 of 4</span><button type="button" class="gallery-nav" id="exhibitNext" aria-label="Next exhibit">→</button></div><p class="swipe-instruction">Swipe to explore · Tap a frame to open</p>
-<div class="gallery-bottom"><p>“Not everything worth keeping comes with a photograph.”</p><button class="link-button" type="button" id="galleryBack">← Back to the entrance</button></div>
+<div class="gallery-bottom"><p>“Not everything worth keeping comes with a photograph.”</p><button class="attendant-button" type="button" id="galleryBack"><svg class="goma-attendant" viewBox="0 0 110 100" role="img" aria-label="Goma the bear, a little museum attendant waving you toward the entrance" xmlns="http://www.w3.org/2000/svg">
+<ellipse cx="52" cy="92" rx="40" ry="5" fill="#b1969e" opacity=".35"/>
+<g class="goma-wave"><path d="M76 52C83 43 85 27 96 30C103 33 99 46 94 56C92 63 87 68 80 65Z" fill="#fff8ee" stroke="#9c8791" stroke-width="2.2"/><path d="M91 34L93 28M96 38L101 33" stroke="#9c8791" stroke-width="2" stroke-linecap="round"/></g>
+<ellipse cx="53" cy="73" rx="31" ry="25" fill="#fffaf2" stroke="#a88d9b" stroke-width="2.4"/>
+<path d="M35 59Q53 52 70 59L66 91H40Z" fill="#ab8a99"/>
+<path d="M53 60L53 92" stroke="#e8d6c9" stroke-width="3"/><circle cx="53" cy="71" r="1.7" fill="#f4deba"/><circle cx="53" cy="83" r="1.7" fill="#f4deba"/>
+<path d="M21 60Q12 68 23 76L32 74L33 63Z" fill="#fffaf2" stroke="#a88d9b" stroke-width="2.2"/>
+<circle cx="30" cy="29" r="13" fill="#fff9f2" stroke="#a88d9b" stroke-width="2.1"/><circle cx="77" cy="29" r="13" fill="#fff9f2" stroke="#a88d9b" stroke-width="2.1"/>
+<ellipse cx="54" cy="42" rx="36" ry="30" fill="#fffaf3" stroke="#a88d9b" stroke-width="2.4"/>
+<ellipse cx="54" cy="52" rx="13" ry="10" fill="#f9e7e2"/>
+<circle cx="42" cy="42" r="2.8" fill="#473e48"/><circle cx="65" cy="42" r="2.8" fill="#473e48"/><path d="M51 51Q54 55 57 51" stroke="#493d49" stroke-width="2" fill="none" stroke-linecap="round"/>
+<ellipse cx="32" cy="51" rx="6" ry="3.8" fill="#eeb7ba" opacity=".72"/><ellipse cx="74" cy="51" rx="6" ry="3.8" fill="#eeb7ba" opacity=".72"/>
+<path d="M30 22Q54 6 79 22" stroke="#f0ca9e" stroke-width="7" stroke-linecap="round"/><path d="M37 18L38 7Q54 -1 70 8L72 18Z" fill="#816a81" stroke="#584f64" stroke-width="2"/><path d="M40 17H69" stroke="#e8c6a6" stroke-width="3"/>
+</svg><span class="attendant-text"><strong>← Return to entrance</strong><small>Goma, your little museum attendant</small></span></button></div>
 </div></section>
 <section class="screen" id="finale" aria-labelledby="finalHeading"><div class="final-grid">
 <div class="final-art"><div class="empty-frame" id="memoryFrame" aria-live="polite"><div id="blankFrame"><div class="question-mark">?</div><div class="frame-caption">Reserved for a memory<br>only you can choose</div></div><div id="savedFrame" hidden><div style="font-size:2.7rem;color:#fff1df;margin-bottom:15px">♡</div><div class="memory-display" id="memoryDisplay"></div></div></div><div class="frame-title" id="frameTitle">Exhibit IV — The space we left for you</div><button type="button" id="shareFromFrame" class="btn secondary" hidden>Share this memory ↗</button></div>
-<div class="final-copy"><p class="eyebrow">The final exhibit · From your point of view</p><h2 id="finalHeading" tabindex="-1">A memory <span class="accent">through your eyes.</span></h2><p class="final-question">If you could keep one memory of us somewhere we could always return to, which one would you choose?</p><form id="answerForm"><label class="answer-label" for="answer">Tell me the moment you'd choose</label><textarea id="answer" class="answer" rows="5" maxlength="1200" placeholder="I'd choose the time when..." required></textarea><div class="actions"><button class="btn" type="submit" id="saveMemory">Place it in the museum ♡</button><button class="btn secondary" type="button" id="shareMemory" hidden>Share my answer ↗</button></div><p class="privacy">Your memory stays in this browser unless you choose to share it. This site does not send or publish responses.</p></form><div class="complete" id="completion" hidden><strong>It belongs here. ♡</strong><p>Thank you for adding your own memory to our little museum. I love that we can remember the same story in different ways. I hope we have many more moments to look back on.</p></div><div class="final-footer"><button class="link-button" id="finalBack" type="button">← Return to the gallery</button><button class="link-button" id="reset" type="button">Start again</button></div></div>
+<div class="final-copy"><p class="eyebrow">The final exhibit · From your point of view</p><h2 id="finalHeading" tabindex="-1">A memory <span class="accent">through your eyes.</span></h2><p class="final-question">If you could keep one memory of us somewhere we could always return to, which one would you choose?</p><form id="answerForm"><label class="answer-label" for="answer">Tell me the moment you'd choose</label><textarea id="answer" class="answer" rows="5" maxlength="1200" placeholder="I'd choose the time when..." required></textarea><div class="actions"><button class="btn" type="submit" id="saveMemory">Place it in the museum ♡</button><button class="btn secondary" type="button" id="shareMemory" hidden>Share my answer ↗</button></div><p class="privacy">Your answer is saved on this device. Nothing is sent automatically; you decide whether to share or privately send it.</p></form><div class="complete" id="completion" hidden><strong>It belongs here. ♡</strong><p>Thank you for adding your own memory to our little museum. I love that we can remember the same story in different ways. I hope we have many more moments to look back on.</p></div><div class="complete-ticket" id="ticketReward" hidden><button type="button" class="btn secondary" id="downloadTicket">Save my stamped ticket ↓</button><p>A small keepsake from today's visit, saved to your device.</p></div><section class="delivery-panel" id="deliveryPanel" hidden aria-labelledby="deliveryHeading"><h3 id="deliveryHeading">Send this memory privately?</h3><p>This will send the answer you chose to the person who made this museum. It will only happen if you tap Send.</p><button class="btn secondary" type="button" id="sendMemory">Send my memory ♡</button><p id="deliveryStatus" class="delivery-status" role="status" aria-live="polite"></p></section><div class="final-footer"><button class="link-button" id="finalBack" type="button">← Return to the gallery</button><button class="link-button" id="reset" type="button">Start again</button></div></div>
 </div></section>
 </main>
 <div class="overlay" id="overlay" hidden><div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalStory"><button type="button" class="modal-close" id="close" aria-label="Close exhibit">×</button><div id="modalArt" class="modal-art" aria-hidden="true"></div><div class="modal-body"><p class="eyebrow" id="modalIndex">Exhibit I</p><h3 id="modalTitle"></h3><p class="modal-story" id="modalStory"></p><p class="modal-foot" id="modalFoot"></p><button type="button" class="btn" id="mark">Keep this moment ✓</button></div></div></div>
@@ -186,17 +265,126 @@ beginning:{num:'I',title:'Where It Began',text:'There was a time when we were st
 little:{num:'II',title:'The Little Things',text:'I think the quietest moments are some of the loveliest. A familiar conversation, something that made us laugh, or simply having you there. They may seem ordinary from the outside, but they’ve never felt ordinary to me.',foot:'A collection of things that never needed to be grand.'},
 onlyus:{num:'III',title:'Only We Understand',text:'We’ve made our own little world of expressions, stories, and things that probably wouldn’t make sense to anyone else. That’s part of what makes them special. Some memories really do belong to just two people.',foot:'For the moments that make sense only to us.'}
 };
+
+// Owner configuration: set this to the URL of your Formspree form
+// (example: https://formspree.io/f/abcdefgh). Leave empty until configured.
+// Never include a private API key or email address in public source code.
+const FORM_ENDPOINT = '';
+const QUESTION = 'If you could keep one memory of us somewhere we could always return to, which one would you choose?';
+const privateDeliveryReady = /^https:\/\/formspree\.io\/f\/[a-zA-Z0-9]+$/.test(FORM_ENDPOINT);
+// Optional real exhibit photos: add a public image path plus useful alt text to a story:
+// image:'memories/photo.webp', alt:'Photograph of us at ...'
+// Until you provide photos, original SVG artifact illustrations remain in place.
 const key='museum-of-us-day-one-v1',valid=['beginning','little','onlyus'],el=id=>document.getElementById(id);
-let state={visited:[],answer:''};
-try{const existing=JSON.parse(localStorage.getItem(key)||'null');if(existing&&typeof existing==='object'){state.visited=Array.isArray(existing.visited)?existing.visited.filter(x=>valid.includes(x)):[];state.answer=typeof existing.answer==='string'?existing.answer.slice(0,1200):'';}}catch(e){}
-let active='',previous=null,timer;
+let state={visited:[],answer:'',sentAnswer:''};
+try{const existing=JSON.parse(localStorage.getItem(key)||'null');if(existing&&typeof existing==='object'){state.visited=Array.isArray(existing.visited)?existing.visited.filter(x=>valid.includes(x)):[];state.answer=typeof existing.answer==='string'?existing.answer.slice(0,1200):'';state.sentAnswer=typeof existing.sentAnswer==='string'?existing.sentAnswer.slice(0,1200):'';}}catch(e){}
+let active='',previous=null,timer,entering=false,unlockedAnimationPlayed=false,deliveryBusy=false;
 function persist(){try{localStorage.setItem(key,JSON.stringify(state));}catch(e){}}
 function show(id){document.querySelectorAll('.screen').forEach(n=>n.classList.toggle('active',n.id===id));window.scrollTo(0,0);const heading=el(id).querySelector('h1,h2');if(heading)heading.focus({preventScroll:true});}
 function toast(message){clearTimeout(timer);el('toast').textContent=message;el('toast').classList.add('show');timer=setTimeout(()=>el('toast').classList.remove('show'),3200);}
-function update(){document.querySelectorAll('.exhibit').forEach(n=>{if(n.dataset.id==='final')return;const v=state.visited.includes(n.dataset.id);n.classList.toggle('visited',v);n.setAttribute('aria-pressed',String(v));});const n=state.visited.length;el('count').textContent=n+' of 3 stories discovered';el('bar').style.width=(n/3*100)+'%';el('track').setAttribute('aria-valuenow',String(n));const f=document.querySelector('[data-id="final"]');f.classList.toggle('locked',n<3);f.classList.toggle('unlocked',n===3);f.setAttribute('aria-disabled',String(n<3));f.setAttribute('aria-label',n===3?'Open the final exhibit':'Final exhibit: locked until three stories discovered');el('finalPlaque').textContent=n===3?'Your turn to choose':'Awaiting discovery';}
+
+function refreshTicket(){
+  const collected=Boolean(state.answer.trim());
+  el('ticketStamp').hidden=!collected;
+  el('ticketReward').hidden=!collected;
+}
+function goEntrance(){
+  entering=false;
+  el('entrance').classList.remove('ticket-transition');
+  el('enterTicket').classList.remove('is-tearing');
+  el('enterTicket').disabled=false;
+  refreshTicket();
+  show('entrance');
+}
+function tearTicket(){
+  if(entering)return;
+  entering=true;
+  el('enterTicket').disabled=true;
+  if(reducedMotion.matches){show('gallery');return;}
+  el('entrance').classList.add('ticket-transition');
+  el('enterTicket').classList.add('is-tearing');
+  window.setTimeout(()=>{
+    show('gallery');
+    el('entrance').classList.remove('ticket-transition');
+    el('enterTicket').classList.remove('is-tearing');
+    el('enterTicket').disabled=false;
+    entering=false;
+  },1050);
+}
+function illuminateLastExhibit(){
+  if(unlockedAnimationPlayed)return;
+  unlockedAnimationPlayed=true;
+  const room=el('museumRoom');
+  room.classList.remove('unlocking');
+  if(!reducedMotion.matches){
+    void room.offsetWidth;
+    room.classList.add('unlocking');
+    window.setTimeout(()=>room.classList.remove('unlocking'),1550);
+  }
+}
+function refreshDelivery(){
+  const saved=!!state.answer.trim();
+  el('deliveryPanel').hidden=!saved||!privateDeliveryReady;
+  if(!privateDeliveryReady||!saved)return;
+  const sentAlready=state.sentAnswer===state.answer;
+  el('sendMemory').disabled=deliveryBusy||sentAlready;
+  el('sendMemory').textContent=deliveryBusy?'Sending…':sentAlready?'Memory delivered ✓':'Send my memory ♡';
+  el('deliveryStatus').dataset.state=sentAlready?'success':'';
+  el('deliveryStatus').textContent=sentAlready?'Your memory was sent successfully.':'Only pressing Send will deliver your answer.';
+}
+async function sendPrivately(){
+  if(deliveryBusy||!privateDeliveryReady||!state.answer.trim()||state.sentAnswer===state.answer)return;
+  deliveryBusy=true;refreshDelivery();
+  const controller=new AbortController();
+  const timeout=setTimeout(()=>controller.abort(),14000);
+  try{
+    const response=await fetch(FORM_ENDPOINT,{
+      method:'POST',headers:{'Accept':'application/json','Content-Type':'application/json'},
+      body:JSON.stringify({message:state.answer,day:'01',collection:'Museum of Us',question:QUESTION}),
+      signal:controller.signal
+    });
+    if(!response.ok)throw Error('Submission rejected');
+    state.sentAnswer=state.answer;
+    persist();
+    toast('Your memory was delivered. ♡');
+  }catch(err){
+    el('deliveryStatus').dataset.state='error';
+    el('deliveryStatus').textContent='Could not deliver your answer. It is still saved here; please try again or use Share my answer.';
+    toast('Delivery did not complete; your answer is safe on this device.');
+  }finally{
+    clearTimeout(timeout);
+    deliveryBusy=false;
+    if(state.sentAnswer===state.answer)refreshDelivery();
+    else{el('sendMemory').disabled=false;el('sendMemory').textContent='Try sending again';}
+  }
+}
+function downloadStampedTicket(){
+  if(!state.answer.trim())return;
+  const svg = '<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="600" viewBox="0 0 1200 600">'+
+  '<rect width="1200" height="600" rx="28" fill="#f2ddc2"/>'+
+  '<rect x="26" y="26" width="1148" height="548" rx="18" fill="none" stroke="#b68f83" stroke-width="4"/>'+
+  '<line x1="900" y1="27" x2="900" y2="573" stroke="#b68f83" stroke-width="5" stroke-dasharray="12 12"/>'+
+  '<text x="85" y="115" font-family="Georgia" font-size="26" letter-spacing="6" fill="#7d6571">THE ANNIVERSARY COUNTDOWN</text>'+
+  '<text x="82" y="260" font-family="Georgia" font-size="84" fill="#604a60">The Museum of Us</text>'+
+  '<text x="86" y="330" font-family="Georgia" font-size="36" font-style="italic" fill="#866b72">A little place for the things we remember.</text>'+
+  '<text x="86" y="495" font-family="Georgia" font-size="32" fill="#8e737e">ONE VISITOR · ONE PRECIOUS MEMORY</text>'+
+  '<text x="940" y="195" font-family="Georgia" font-size="35" text-anchor="middle" fill="#7d6072">DAY</text>'+
+  '<text x="1040" y="310" font-family="Georgia" font-size="135" text-anchor="middle" fill="#715569">01</text>'+
+  '<text x="1040" y="407" font-family="Georgia" font-size="32" text-anchor="middle" fill="#a56c73" transform="rotate(-12 1040 407)">VISITED</text>'+
+  '<text x="1040" y="450" font-family="Georgia" font-size="22" text-anchor="middle" fill="#7d6072">♡</text></svg>';
+  const blob=new Blob([svg],{type:'image/svg+xml'});
+  const url=URL.createObjectURL(blob);
+  const link=document.createElement('a');
+  link.href=url;link.download='museum-of-us-day-01-ticket.svg';
+  document.body.appendChild(link);link.click();link.remove();
+  window.setTimeout(()=>URL.revokeObjectURL(url),1200);
+  toast('Your stamped museum ticket is ready to save. ♡');
+}
+
+function update(){document.querySelectorAll('.exhibit').forEach(n=>{if(n.dataset.id==='final')return;const v=state.visited.includes(n.dataset.id);n.classList.toggle('visited',v);n.setAttribute('aria-pressed',String(v));});const n=state.visited.length;el('count').textContent=n+' of 3 stories discovered';el('bar').style.width=(n/3*100)+'%';el('track').setAttribute('aria-valuenow',String(n));const f=document.querySelector('[data-id="final"]');f.classList.toggle('locked',n<3);f.classList.toggle('unlocked',n===3);f.setAttribute('aria-disabled',String(n<3));f.setAttribute('aria-label',n===3?'Open the final exhibit':'Final exhibit: locked until three stories discovered');el('finalPlaque').textContent=n===3?'Your turn to choose':'Awaiting discovery';if(n<3)unlockedAnimationPlayed=false;}
 function open(id){if(id==='final'){if(state.visited.length<3){toast('Discover the first three exhibits to unlock this one.');return;}render();show('finale');return;}const item=stories[id];if(!item)return;active=id;previous=document.activeElement;el('modalIndex').textContent='Exhibit '+item.num+' · Private collection';el('modalTitle').textContent=item.title;el('modalStory').textContent=item.text;el('modalFoot').textContent=item.foot;el('modalArt').replaceChildren(document.querySelector('[data-id="'+id+'"] .frame').cloneNode(true));el('mark').textContent=state.visited.includes(id)?'Close exhibit ✓':'Keep this moment ✓';el('overlay').hidden=false;document.body.style.overflow='hidden';el('close').focus();}
 function close(){el('overlay').hidden=true;document.body.style.overflow='';if(previous&&previous.focus)previous.focus();}
-function render(){el('answer').value=state.answer;const has=Boolean(state.answer.trim());el('memoryFrame').classList.toggle('filled',has);el('blankFrame').hidden=has;el('savedFrame').hidden=!has;el('memoryDisplay').textContent=state.answer;el('frameTitle').textContent=has?'Exhibit IV — A memory through your eyes':'Exhibit IV — The space we left for you';el('completion').hidden=!has;el('shareMemory').hidden=!has;el('shareFromFrame').hidden=!has;el('saveMemory').textContent=has?'Update this memory ♡':'Place it in the museum ♡';}
+function render(){el('answer').value=state.answer;const has=Boolean(state.answer.trim());el('memoryFrame').classList.toggle('filled',has);el('blankFrame').hidden=has;el('savedFrame').hidden=!has;el('memoryDisplay').textContent=state.answer;el('frameTitle').textContent=has?'Exhibit IV — A memory through your eyes':'Exhibit IV — The space we left for you';el('completion').hidden=!has;el('shareMemory').hidden=!has;el('shareFromFrame').hidden=!has;el('saveMemory').textContent=has?'Update this memory ♡':'Place it in the museum ♡';refreshTicket();refreshDelivery();}
 
 const rail=document.querySelector('.exhibit-grid');
 const tiles=Array.from(rail.querySelectorAll('.exhibit'));
@@ -232,13 +420,13 @@ window.addEventListener('resize',()=>setGalleryNav());
 el('exhibitPrev').addEventListener('click',()=>navigateGallery(galleryPosition-1));
 el('exhibitNext').addEventListener('click',()=>navigateGallery(galleryPosition+1));
 
-el('enter').addEventListener('click',()=>show('gallery'));el('brand').addEventListener('click',e=>{e.preventDefault();if(!el('overlay').hidden)close();show('entrance');});el('galleryBack').addEventListener('click',()=>show('entrance'));el('finalBack').addEventListener('click',()=>show('gallery'));document.querySelectorAll('.exhibit').forEach(n=>n.addEventListener('click',()=>open(n.dataset.id)));el('close').addEventListener('click',close);el('overlay').addEventListener('click',e=>{if(e.target===el('overlay'))close();});
+el('enterTicket').addEventListener('click',tearTicket);el('brand').addEventListener('click',e=>{e.preventDefault();if(!el('overlay').hidden)close();goEntrance();});el('galleryBack').addEventListener('click',goEntrance);el('finalBack').addEventListener('click',()=>show('gallery'));document.querySelectorAll('.exhibit').forEach(n=>n.addEventListener('click',()=>open(n.dataset.id)));el('close').addEventListener('click',close);el('overlay').addEventListener('click',e=>{if(e.target===el('overlay'))close();});
 document.addEventListener('keydown',e=>{if(el('overlay').hidden)return;if(e.key==='Escape'){close();return;}if(e.key!=='Tab')return;const first=el('close'),last=el('mark');if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}});
-el('mark').addEventListener('click',()=>{if(!state.visited.includes(active)){state.visited.push(active);persist();update();close();if(window.matchMedia('(max-width: 750px)').matches){const next=valid.findIndex(id=>!state.visited.includes(id));requestAnimationFrame(()=>navigateGallery(next<0?3:next));}toast(state.visited.length===3?'The final frame is ready for you.':'Another little memory has been added.');}else close();});
+el('mark').addEventListener('click',()=>{if(!state.visited.includes(active)){state.visited.push(active);persist();update();close();if(window.matchMedia('(max-width: 750px)').matches){const next=valid.findIndex(id=>!state.visited.includes(id));requestAnimationFrame(()=>navigateGallery(next<0?3:next));}if(state.visited.length===3){illuminateLastExhibit();}toast(state.visited.length===3?'The last exhibit is now glowing. It is waiting for your memory.':'Another little memory has been added.');}else close();});
 el('answerForm').addEventListener('submit',e=>{e.preventDefault();const value=el('answer').value.trim();if(!value){el('answer').focus();return;}state.answer=value.slice(0,1200);persist();render();toast('Your memory has found a place in the museum. ♡');if(window.matchMedia('(max-width: 750px)').matches){el('answer').blur();requestAnimationFrame(()=>el('memoryFrame').scrollIntoView({behavior:reducedMotion.matches?'instant':'smooth',block:'center'}));}});
-el('shareFromFrame').addEventListener('click',()=>el('shareMemory').click());
-el('shareMemory').addEventListener('click',async()=>{if(!state.answer)return;const content='The Museum of Us · Day One\n\nIf you could keep one memory of us somewhere we could always return to, which one would you choose?\n\n'+state.answer+'\n\n♡';if(navigator.share){try{await navigator.share({title:'A memory through my eyes',text:content});return;}catch(e){if(e&&e.name==='AbortError')return;}}try{if(navigator.clipboard&&navigator.clipboard.writeText){await navigator.clipboard.writeText(content);toast('Copied! Paste your answer into a message.');return;}}catch(e){}el('answer').focus();el('answer').select();try{if(document.execCommand('copy')){toast('Copied! Paste your answer into a message.');return;}}catch(e){}toast('Select your answer above to copy it.');});
-el('reset').addEventListener('click',()=>{if(!confirm('Start over? This clears the saved museum memory on this device.'))return;state={visited:[],answer:''};persist();update();render();show('entrance');toast('A new ticket is waiting at the entrance.');});
+el('shareFromFrame').addEventListener('click',()=>el('shareMemory').click());el('sendMemory').addEventListener('click',sendPrivately);el('downloadTicket').addEventListener('click',downloadStampedTicket);
+el('shareMemory').addEventListener('click',async()=>{if(!state.answer)return;const content='The Museum of Us · Day One\n\n'+QUESTION+'\n\n'+state.answer+'\n\n♡';if(navigator.share){try{await navigator.share({title:'A memory through my eyes',text:content});return;}catch(e){if(e&&e.name==='AbortError')return;}}try{if(navigator.clipboard&&navigator.clipboard.writeText){await navigator.clipboard.writeText(content);toast('Copied! Paste your answer into a message.');return;}}catch(e){}el('answer').focus();el('answer').select();try{if(document.execCommand('copy')){toast('Copied! Paste your answer into a message.');return;}}catch(e){}toast('Select your answer above to copy it.');});
+el('reset').addEventListener('click',()=>{if(!confirm('Start over? This clears the saved museum memory on this device.'))return;state={visited:[],answer:'',sentAnswer:''};persist();update();render();goEntrance();toast('A new ticket is waiting at the entrance.');});
 update();render();setGalleryNav();
 })();
 </script>
