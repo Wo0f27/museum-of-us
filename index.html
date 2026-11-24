@@ -269,7 +269,10 @@ button{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .album-controls span{font-size:.8rem;font-weight:700;letter-spacing:.05em;font-variant-numeric:tabular-nums}
 @media(max-width:750px){.memory-album{padding:15px 12px 12px;gap:10px}.memory-photo{max-height:40svh;border-width:5px}.album-controls button{width:46px;height:46px}.modal-body{padding:22px 23px 27px}}
 
+#blankFrame .frame-caption{white-space:pre-line}
 </style>
+<!-- All personalized wording is in museum-text.js. Script loads before page interactions. -->
+<script src="museum-text.js"></script>
 </head>
 <body>
 <header class="site-header"><a href="#" id="brand" class="brand" aria-label="Return to museum entrance">✧ THE MUSEUM OF US</a></header>
@@ -314,7 +317,8 @@ button{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 <script>
 (function(){
 'use strict';
-// Replace these general draft notes with your real memories before sending the page.
+// museum-text.js is the single editing location. All original wording below remains a safe fallback.
+const museumCopy = window.MUSEUM_TEXT || {};
 const stories={
 beginning:{image:'photos/20221124_184635.webp',alt:'A photograph from our collection',num:'I',title:'Where It Began',text:'There was a time when we were still becoming part of each other’s lives. We didn’t know how many little stories were ahead of us. I’m glad that somewhere along the way, our paths became a story of their own.',foot:'The beginning of a story that still has so much left to tell.'},
 little:{image:'photos/20221212_144258.webp',alt:'A photograph from our collection',num:'II',title:'The Little Things',text:'I think the quietest moments are some of the loveliest. A familiar conversation, something that made us laugh, or simply having you there. They may seem ordinary from the outside, but they’ve never felt ordinary to me.',foot:'A collection of things that never needed to be grand.'},
@@ -326,12 +330,23 @@ growth:{image:'photos/Screenshot_20230125-022911_Messenger.webp',alt:'A photogra
 together:{image:'photos/IMG_20251125_214117_714.webp',alt:'A photograph from our collection',num:'VIII',title:'The Days We Made',text:'I sometimes wonder which ordinary day would surprise us most if we could revisit it. Perhaps we would notice little details we never realized were special.',foot:'All the days that quietly became memories.'},
 tomorrow:{image:'photos/received_614365084507906.jpeg.webp',alt:'A photograph from our collection',num:'IX',title:'The Chapters Ahead',text:'There are still stories we have not told and places we have not gone. I hope we keep discovering moments we will remember with tenderness one day.',foot:'A gentle space for the future we have yet to see.'}
 };
+// Keep original photos and fallback stories; override *only text* when configured.
+if(museumCopy.exhibits && typeof museumCopy.exhibits==='object'){
+  Object.entries(museumCopy.exhibits).forEach(([id,copy])=>{
+    const story=stories[id];if(!story||!copy)return;
+    if(typeof copy.title==='string')story.title=copy.title;
+    if(typeof copy.story==='string')story.text=copy.story;
+    if(typeof copy.closing==='string')story.foot=copy.closing;
+  });
+}
 
 // Owner configuration: set this to the URL of your Formspree form
 // (example: https://formspree.io/f/abcdefgh). Leave empty until configured.
 // Never include a private API key or email address in public source code.
 const FORM_ENDPOINT = 'https://formspree.io/f/mzerkrjb';
-const QUESTION = 'If you could keep one memory of us somewhere we could always return to, which one would you choose?';
+const QUESTION = (museumCopy.finale && typeof museumCopy.finale.question==='string')
+ ? museumCopy.finale.question
+ : 'If you could keep one memory of us somewhere we could always return to, which one would you choose?';
 const privateDeliveryReady = /^https:\/\/formspree\.io\/f\/[a-zA-Z0-9]+$/.test(FORM_ENDPOINT);
 // Optional real exhibit photos: add a public image path plus useful alt text to a story:
 // image:'memories/photo.webp', alt:'Photograph of us at ...'
@@ -502,7 +517,11 @@ function downloadStampedTicket(){
 function update(){document.querySelectorAll('.exhibit').forEach(n=>{if(n.dataset.id==='final')return;const v=state.visited.includes(n.dataset.id);n.classList.toggle('visited',v);n.setAttribute('aria-pressed',String(v));});const n=state.visited.length;el('count').textContent=n+' of 9 memories discovered';el('bar').style.width=(n/9*100)+'%';el('track').setAttribute('aria-valuenow',String(n));const f=document.querySelector('[data-id="final"]');f.classList.toggle('locked',n<9);f.classList.toggle('unlocked',n===9);f.setAttribute('aria-disabled',String(n<9));f.setAttribute('aria-label',n===9?'Open the final exhibit':'Final exhibit: locked until nine memories discovered');el('finalPlaque').textContent=n===9?'Your turn to choose':'Awaiting discovery';if(n<9)unlockedAnimationPlayed=false;}
 function open(id){if(id==='final'){if(state.visited.length<9){toast('Discover all nine memories to unlock the final exhibit.');return;}render();show('finale');return;}const item=stories[id];if(!item)return;active=id;previous=document.activeElement;el('modalIndex').textContent='Exhibit '+item.num+' · Private collection';el('modalTitle').textContent=item.title;el('modalStory').textContent=item.text;el('modalFoot').textContent=item.foot;el('modalArt').replaceChildren(document.querySelector('[data-id="'+id+'"] .frame').cloneNode(true));presentAlbum(id);el('mark').textContent=state.visited.includes(id)?'Close exhibit ✓':'Keep this moment ✓';el('overlay').hidden=false;document.body.style.overflow='hidden';el('close').focus();}
 function close(){el('overlay').hidden=true;document.body.style.overflow='';if(previous&&previous.focus)previous.focus();}
-function render(){el('answer').value=state.answer;const has=Boolean(state.answer.trim());el('memoryFrame').classList.toggle('filled',has);el('blankFrame').hidden=has;el('savedFrame').hidden=!has;el('memoryDisplay').textContent=state.answer;el('frameTitle').textContent=has?'Exhibit X — A memory through your eyes':'Exhibit X — The space we left for you';el('completion').hidden=!has;el('shareMemory').hidden=!has;el('shareFromFrame').hidden=!has;el('saveMemory').textContent=has?'Update this memory ♡':'Place it in the museum ♡';refreshTicket();refreshDelivery();}
+function render(){el('answer').value=state.answer;const has=Boolean(state.answer.trim());el('memoryFrame').classList.toggle('filled',has);el('blankFrame').hidden=has;el('savedFrame').hidden=!has;el('memoryDisplay').textContent=state.answer;el('frameTitle').textContent=has
+ ? ((museumCopy.finale && museumCopy.finale.frameTitleFilled)||'Exhibit X — A memory through your eyes')
+ : ((museumCopy.finale && museumCopy.finale.frameTitleEmpty)||'Exhibit X — The space we left for you');el('completion').hidden=!has;el('shareMemory').hidden=!has;el('shareFromFrame').hidden=!has;el('saveMemory').textContent=has
+ ? ((museumCopy.finale && museumCopy.finale.updateButton)||'Update this memory ♡')
+ : ((museumCopy.finale && museumCopy.finale.saveButton)||'Place it in the museum ♡');refreshTicket();refreshDelivery();}
 
 
 const roomNames=[
@@ -510,6 +529,14 @@ const roomNames=[
 {name:'Ordinary Wonders',hint:'Some of the loveliest memories are hidden in everyday life.'},
 {name:'Still Becoming',hint:'A few things we have learned, and moments still waiting for us.'}
 ];
+// Navigation uses the same source of truth as the editable gallery introductions.
+if(Array.isArray(museumCopy.galleries)){
+  museumCopy.galleries.forEach((copy,index)=>{
+    const room=roomNames[index];if(!room||!copy)return;
+    if(typeof copy.name==='string')room.name=copy.name;
+    if(typeof copy.hint==='string')room.hint=copy.hint;
+  });
+}
 const panels=Array.from(document.querySelectorAll('.gallery-room-panel'));
 const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
 let currentRoom=0,galleryPosition=0,programmaticScroll=false,scrollSettleTimer=0,navSettleTimer=0;
@@ -583,6 +610,69 @@ el('answerForm').addEventListener('submit',e=>{e.preventDefault();const value=el
 el('shareFromFrame').addEventListener('click',()=>el('shareMemory').click());el('sendMemory').addEventListener('click',sendPrivately);el('downloadTicket').addEventListener('click',downloadStampedTicket);
 el('shareMemory').addEventListener('click',async()=>{if(!state.answer)return;const content='The Museum of Us · Day One\n\n'+QUESTION+'\n\n'+state.answer+'\n\n♡';if(navigator.share){try{await navigator.share({title:'A memory through my eyes',text:content});return;}catch(e){if(e&&e.name==='AbortError')return;}}try{if(navigator.clipboard&&navigator.clipboard.writeText){await navigator.clipboard.writeText(content);toast('Copied! Paste your answer into a message.');return;}}catch(e){}el('answer').focus();el('answer').select();try{if(document.execCommand('copy')){toast('Copied! Paste your answer into a message.');return;}}catch(e){}toast('Select your answer above to copy it.');});
 el('reset').addEventListener('click',()=>{if(!confirm('Start over? This clears the saved museum memory on this device.'))return;state={visited:[],answer:'',sentAnswer:''};persist();update();render();goEntrance();toast('A new ticket is waiting at the entrance.');});
+
+// Personalization bridge. Never edit here for ordinary wording.
+// It applies the centralized config to the static HTML and exhibit plaques.
+function applyMuseumWording(){
+ const entrance=museumCopy.entrance||{};
+ const finale=museumCopy.finale||{};
+ const extra=museumCopy.galleryExtras||{};
+ const site=museumCopy.site||{};
+ function write(selector,value){
+   if(typeof value!=='string')return;
+   const node=document.querySelector(selector);
+   if(node)node.textContent=value;
+ }
+ function heading(id,before,accent){
+   const node=el(id);if(!node)return;
+   if(typeof before==='string'&&node.firstChild)node.firstChild.textContent=before;
+   const emphasized=node.querySelector('.accent');
+   if(emphasized&&typeof accent==='string')emphasized.textContent=accent;
+ }
+ if(typeof site.browserTitle==='string')document.title=site.browserTitle;
+ const description=document.querySelector('meta[name="description"]');
+ if(description&&typeof site.browserDescription==='string')description.content=site.browserDescription;
+ write('#entrance .eyebrow',entrance.eyebrow);
+ heading('entranceHeading',entrance.headingBefore,entrance.headingAccent);
+ write('#entrance .lead',entrance.lead);
+ write('#ticketInstruction',entrance.ticketInstruction);
+ write('#enterTicket .ticket-main small',entrance.ticketTop);
+ write('#enterTicket .ticket-main strong',entrance.ticketName);
+ write('#enterTicket .ticket-main em',entrance.ticketDescription);
+ write('#enterTicket .stub small:last-of-type',entrance.ticketStub);
+ write('#entrance .entry-note',entrance.note);
+ write('#entrance .museum-illustration .nameplate',entrance.buildingName);
+ write('#entrance .footer-mark',entrance.footer);
+
+ Object.keys(stories).forEach(id=>{
+   const story=stories[id], copy=(museumCopy.exhibits||{})[id]||{};
+   const button=document.querySelector('.exhibit[data-id="'+id+'"]');
+   write('.exhibit[data-id="'+id+'"] .plaque strong',story.title);
+   write('.exhibit[data-id="'+id+'"] .plaque small',copy.subtitle);
+   if(button)button.setAttribute('aria-label','Exhibit '+story.num+': '+story.title);
+ });
+ document.querySelectorAll('.curtain-trigger').forEach((button,index)=>{
+   if(roomNames[index])button.setAttribute('aria-label','Open the red curtain for '+roomNames[index].name);
+ });
+ write('.gallery-bottom > p',extra.quote);
+ write('#galleryBack .attendant-text strong',extra.returnTitle);
+ write('#galleryBack .attendant-text small',extra.returnNote);
+
+ write('#finale .final-copy .eyebrow',finale.eyebrow);
+ heading('finalHeading',finale.headingBefore,finale.headingAccent);
+ write('#finale .final-question',QUESTION);
+ write('#blankFrame .frame-caption',finale.blankFrame);
+ write('#finale .answer-label',finale.answerLabel);
+ if(typeof finale.answerPlaceholder==='string')el('answer').placeholder=finale.answerPlaceholder;
+ write('#completion strong',finale.completionHeading);
+ write('#completion p',finale.completionMessage);
+ write('#finalBack strong',finale.returnTitle);
+ write('#finalBack small',finale.returnSubtitle);
+ write('#reset strong',finale.restartTitle);
+ write('#reset small',finale.restartSubtitle);
+}
+
+applyMuseumWording();
 update();render();activateRoom(0);
 })();
 </script>
