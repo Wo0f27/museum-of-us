@@ -272,7 +272,20 @@ button{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 #blankFrame .frame-caption{white-space:pre-line}
 </style>
 <!-- All personalized wording is in museum-text.js. Script loads before page interactions. -->
-<script src="museum-text.js"></script>
+<script>
+/* Fetch the newest museum wording on every visit, including mobile browsers
+   that cache JavaScript files after a GitHub Pages deployment. */
+window.museumTextReady = new Promise(function(resolve) {
+  const contentScript = document.createElement('script');
+  contentScript.src = 'museum-text.js?fresh=' + Date.now();
+  contentScript.onload = resolve;
+  contentScript.onerror = function() {
+    // index.html retains its original text as a fallback.
+    resolve();
+  };
+  document.head.appendChild(contentScript);
+});
+</script>
 </head>
 <body>
 <header class="site-header"><a href="#" id="brand" class="brand" aria-label="Return to museum entrance">✧ THE MUSEUM OF US</a></header>
@@ -315,8 +328,9 @@ button{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 <div class="overlay" id="overlay" hidden><div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalStory"><button type="button" class="modal-close" id="close" aria-label="Close exhibit">×</button><div id="modalArt" class="modal-art" aria-hidden="true"></div><div id="memoryAlbum" class="memory-album" hidden><div class="memory-photo-shell"><img id="albumPhoto" class="memory-photo" alt="" decoding="async"></div><div class="album-controls" aria-label="Photo album navigation"><button id="albumPrev" type="button" aria-label="Previous photograph">‹</button><span id="albumCounter" aria-live="polite">1 of 1</span><button id="albumNext" type="button" aria-label="Next photograph">›</button></div></div><div class="modal-body"><p class="eyebrow" id="modalIndex">Exhibit I</p><h3 id="modalTitle"></h3><p class="modal-story" id="modalStory"></p><p class="modal-foot" id="modalFoot"></p><button type="button" class="btn" id="mark">Keep this moment ✓</button></div></div></div>
 <div role="status" aria-live="polite" id="toast"></div>
 <script>
-(function(){
+(async function(){
 'use strict';
+await (window.museumTextReady || Promise.resolve());
 // museum-text.js is the single editing location. All original wording below remains a safe fallback.
 const museumCopy = window.MUSEUM_TEXT || {};
 const stories={
