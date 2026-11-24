@@ -53,46 +53,46 @@ window.MUSEUM_TEXT = {
       title: "Where It Began",
       subtitle: "A beginning to remember",
       story: "When we started talking, to be honest, I never expected that you'll like me. Well, you liked me so much you filled my neck with hickeys (I'm joking, don't kill me). But seriously, I'm happy and grateful that I met you. I can't imagine how I'll live my life without you in it. But yeah, here are some photos for you to remember some memories about hehe",
-      closing: "The beginning of a story that still has so much left to tell.",
+      closing: "Some of the memories I'm fond of, even when the quality isn't the best.",
     },
 
     // Gallery 1 · Exhibit II
     little: {
       title: "The Little Things",
-      subtitle: "Ordinary magic",
-      story: "I think the quietest moments are some of the loveliest. A familiar conversation, something that made us laugh, or simply having you there. They may seem ordinary from the outside, but they’ve never felt ordinary to me.",
-      closing: "A collection of things that never needed to be grand.",
+      subtitle: "Little except on certain things ;)",
+      story: "Sometimes we find memories on the simplest things. We may not be out all the time but we still managed to have some incredible memories. Or even when doing simple stuff, honestly the ones where I do your laundry is quite a treasure trove of memories on its own but I don't have much photos of it. You made me realize that everything doesn't have to be grand to be appreciated or fun. I'm looking forward to making more memories with you. Know that I'll always be here for you, okay? I love you",
+      closing: "Not everything has to be grand for us to make memories.",
     },
 
     // Gallery 1 · Exhibit III
     onlyus: {
-      title: "Only We Understand",
-      subtitle: "A world of our own",
-      story: "We’ve made our own little world of expressions, stories, and things that probably wouldn’t make sense to anyone else. That’s part of what makes them special. Some memories really do belong to just two people.",
-      closing: "For the moments that make sense only to us.",
+      title: "Our Subspace Bubble",
+      subtitle: "We tend to have our personal bubble",
+      story: "Sometimes, we have our very own bubble when go out, and I like that. We have our jokes that only us can understand, references to things we see, I love it.",
+      closing: "For the moments that make sense only to us, as corny as things are sometimes.",
     },
 
     // Gallery 2 · Exhibit IV
     places: {
-      title: "Places We Carry",
+      title: "Our Special Spots",
       subtitle: "Everywhere became somewhere",
-      story: "Certain places become more than points on a map. A street, a café, or a quiet corner can remind us of time we spent together. I like knowing how places can hold a story.",
-      closing: "Somewhere becomes special because of who was there.",
+      story: "We had our own spots on certain places. The McDo seat that we always go back to, the FroYo place we used to visit alot (it's sad it's gone now). May we find more places like that on new places we'll visit.",
+      closing: "Places turned special because you're there with me.",
     },
 
     // Gallery 2 · Exhibit V
     laughter: {
-      title: "The Laughs We Kept",
-      subtitle: "Silly moments worth keeping",
-      story: "Some of the silliest moments are the ones that stay with us. I hope that years from now, we will still remember a joke and start laughing for no apparent reason.",
-      closing: "For the moments that still make us smile.",
+      title: "Our Silly Little Moments",
+      subtitle: "Moments worth keeping",
+      story: "I hope that years from now, we will still remember a joke or reference we have and still find it funny.",
+      closing: "For the moments that still make us smile, no matter how dumb sometimes.",
     },
 
     // Gallery 2 · Exhibit VI
     kindness: {
-      title: "Unnoticed Kindness",
-      subtitle: "Little gestures of care",
-      story: "Love sometimes lives in gestures so small they almost go unnoticed. Looking back, I want to remember the ways we have made each other feel cared for.",
+      title: "Simple Acts of Care and Love",
+      subtitle: "Little gestures that I appreciate",
+      story: "Love sometimes lives in gestures so small they almost go unnoticed. I appreciate the things you give me, the things you do for me, making me feel loved, cared for and that you're always there for me Looking back, I want to remember the ways we have made each other feel cared for. I may have been a bit busy lately, but I look forward into making it up for lost time with you. I hope you'll give me another chance. I love you.",
       closing: "For every quiet act of care.",
     },
 
@@ -100,7 +100,7 @@ window.MUSEUM_TEXT = {
     growth: {
       title: "How We Have Grown",
       subtitle: "The chapters that shape us",
-      story: "We have both changed since the beginning. Every experience teaches us something new, including how to better understand each other. There is still so much for us to learn.",
+      story: "We have both changed since the beginning. Every experience taught us something new, including how to better understand each other. It may be the case that not all experience of us are great, some put us down, some made us sad, but we bounced back and learned something new. I'll always be with you and be on your side, no matter what. Please don't forget that",
       closing: "Not every important chapter is easy, but each one is part of our story.",
     },
 
@@ -108,22 +108,22 @@ window.MUSEUM_TEXT = {
     together: {
       title: "The Days We Made",
       subtitle: "The beauty of the everyday",
-      story: "I sometimes wonder which ordinary day would surprise us most if we could revisit it. Perhaps we would notice little details we never realized were special.",
+      story: "I sometimes wonder which ordinary day would surprise us most if we could revisit it. Perhaps we would notice little details we never realized were special. Times like those which makes me hope we can have a time machine haha.",
       closing: "All the days that quietly became memories.",
     },
 
     // Gallery 3 · Exhibit IX
     tomorrow: {
       title: "The Chapters Ahead",
-      subtitle: "Still waiting to be written",
-      story: "There are still stories we have not told and places we have not gone. I hope we keep discovering moments we will remember with tenderness one day.",
-      closing: "A gentle space for the future we have yet to see.",
+      subtitle: "Still waiting to be written, chapters to be made",
+      story: "There are still stories we have not told and places we have not gone. I hope we keep discovering moments we will remember with tenderness one day. I'm looking forward to all the new places we'll discover, we'll go to, and we'll explore. As long as we're together, my love.",
+      closing: "See you, to the future we're heading at",
     },
   },
 
   // 4. GALLERY FOOTER AND GOMA ATTENDANT
   galleryExtras: {
-    quote: "“Not everything worth keeping comes with a photograph.”",
+    quote: "“I look forward into making more memories with you”",
     returnTitle: "← Return to entrance",
     returnNote: "Goma says: this way, please!",
   },
