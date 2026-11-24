@@ -15,26 +15,31 @@ GitHub Pages site built with HTML, CSS, inline SVG, and vanilla JavaScript. No f
 
 Goma (the gray cat) remains the museum attendant on **Return to entrance**, with a gray-cat SVG fallback if its hosted image fails. The two illustrated buttons at the end use **Peach and Goma stickers** already present in the owner's earlier `please-forgive-me-my-love` repository. The gallery and ticket entrance have no extra character decorations. These character images load over the network.
 
-## Change exhibit text or add actual photographs
+## Personalize all text from your phone
 
-Open `index.html` and find `const stories` near the bottom. Update the `text` and `foot` fields for each of the nine exhibits. The new Room II and Room III stories are placeholders, not claims about real relationship events.
+**Edit only [museum-text.js](museum-text.js)** for normal changes to the museum's wording. The ticket, photo albums, gallery navigation, CSS, and Formspree system remain in `index.html`.
 
-To show a real image, put it in a `memories/` folder and add `image` and `alt` fields to the corresponding story object. Example:
+1. Open [the phone-friendly text editor](https://github.com/Wo0f27/museum-of-us/edit/main/museum-text.js) while signed in to GitHub.
+2. Choose **Edit** (pencil), change words **inside the double quotation marks**, and keep the `{ }`, commas, and field names intact.
+3. Scroll down, select **Commit changes**, and commit to `main`.
+4. Confirm the [Pages deployment](https://github.com/Wo0f27/museum-of-us/actions) succeeds, then open the [museum](https://wo0f27.github.io/museum-of-us/) in a new/private tab to bypass stale browser cache. GitHub Pages and mobile browsers can cache recently changed files.
 
-```js
-beginning: {
-  num: 'I',
-  title: 'Where It Began',
-  text: 'A memory we shared...',
-  foot: 'What made it special...',
-  image: 'memories/our-first-photo.webp',
-  alt: 'A photograph showing the place where we first met'
-}
-```
+The file has five clearly marked sections:
 
-If an optional image fails to load, the default SVG illustration returns. The second and third exhibits are styled as artifact displays rather than only framed paintings.
+- **Entrance + ticket** — your invitation, museum introduction, ticket wording, and the personal note.
+- **Three galleries** — room titles and introductory descriptions.
+- **Nine exhibits** — each `title`, `subtitle`, `story` (the long passage), and `closing` (the short text below it). Your photos remain untouched.
+- **Gallery footer** — the museum's closing quote and Goma's attendant wording.
+- **Final reflection** — the question, input prompt, and message she sees after contributing a memory.
 
-> **Privacy:** The repository is public. Any committed photographs, personal details, or image files are publicly accessible. Never commit images you intend to keep private.
+**Change the final question only in `museum-text.js`.** The visible question and Formspree metadata automatically use the same value.
+
+If a quotation mark is needed inside a sentence, write `\\"` or use curly quotation marks. To add paragraph breaks in an exhibit story, insert `\\n\\n` within the quoted string. Never change the `photoAlbums` code to rewrite exhibits.
+
+**Safe fallback:** `index.html` still contains the original text so a missing `museum-text.js` will not erase the content. But while `museum-text.js` loads normally, its text takes priority over duplicate fallback wording in the HTML.
+
+**Privacy:** This is a public repository; any committed stories or photographs are publicly accessible.
+
 
 ## Private answer delivery — endpoint connected, live receipt not yet tested
 
@@ -68,7 +73,7 @@ GitHub's built-in **pages build and deployment** workflow publishes changes from
 - Replace generic exhibit copy with exact memories and personal objects.
 - If desired, add your own exhibit images (with the privacy warning above in mind).
 - Keep Goma on the Return to entrance attendant button, and the final Peach/Goma stickers on the two ending navigation buttons, unless you explicitly choose otherwise.
-- The final question can be changed in the `.final-question` text and the `QUESTION` constant so shared answers show the matching prompt.
+- Edit the final question once in `museum-text.js`; the visible prompt and shared/submitted metadata stay synchronized.
 
 ## Technical notes
 
@@ -77,4 +82,4 @@ GitHub's built-in **pages build and deployment** workflow publishes changes from
 - The final keepsake is a downloadable SVG generated locally and contains no personal answer text.
 - The Formspree integration uses a browser POST only after the visitor chooses Send. Backend form ownership is needed for private delivery.
 
-**Status:** v0.5 site with Formspree endpoint connected. Real submission reception has not yet been tested; personal photo/story content remains unconfigured.
+**Status:** All 45 optimized photographs are live across nine exhibits. The Formspree endpoint has passed an owner-confirmed test. Personalized wording is centralized in `museum-text.js`.
