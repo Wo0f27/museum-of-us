@@ -28,7 +28,7 @@ window.MUSEUM_TEXT = {
     eyebrow: "An invitation, just for you",
     headingBefore: "A little museum for the things ",
     headingAccent: "we remember.",
-    lead: "We've been wanting to visit some museums before, made one for us.",
+    lead: "We've been wanting to visit some museums before, so I made one for us.",
     ticketInstruction: "Your invitation is ready. Tap the ticket to enter.",
     ticketTop: "Private collection · admit one",
     ticketName: "The Museum of Us",
@@ -41,9 +41,9 @@ window.MUSEUM_TEXT = {
 
   // 2. THREE GALLERY TITLES + INTRODUCTIONS
   galleries: [
-    {name: "Where It Began", hint: "The beginning of my beautiful and wonderful journey with you."}, // Gallery 1
-    {name: "Ordinary Wonders", hint: "Some of the loveliest memories are hidden in everyday life."}, // Gallery 2
-    {name: "Still Becoming", hint: "A few things we have learned, and moments still waiting for us."}, // Gallery 3
+    {name: "Where It Began", hint: "The beginning of our beautiful journey."}, // Gallery 1
+    {name: "Ordinary Wonders", hint: "Sometimes, we find memories on the simplest of things."}, // Gallery 2
+    {name: "Looking Ahead", hint: "Times we grew together, learned together, and for the future together."}, // Gallery 3
   ],
 
   // 3. NINE EXHIBITS (story = longer paragraph; closing = shorter line)
@@ -52,7 +52,7 @@ window.MUSEUM_TEXT = {
     beginning: {
       title: "Where It Began",
       subtitle: "A beginning to remember",
-      story: "There was a time when we were still becoming part of each other’s lives. We didn’t know how many little stories were ahead of us. I’m glad that somewhere along the way, our paths became a story of their own.",
+      story: "When we started talking, to be honest, I never expected that you'll like me. Well, you liked me so much you filled my neck with hickeys (I'm joking, don't kill me). But seriously, I'm happy and grateful that I met you. I can't imagine how I'll live my life without you in it. But yeah, here are some photos for you to remember some memories about hehe",
       closing: "The beginning of a story that still has so much left to tell.",
     },
 
